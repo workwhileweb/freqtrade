@@ -1,0 +1,15 @@
+tôi là thành viên mới của dự án này, hãy xem xét tìm hiểu toàn bộ doc và code của repo và :
+- trình bày nguyên tắc hoạt động của repo, lưu lại bằng file md
+- các code flow chính của repo, lưu lại bằng file md
+- hướng dẫn build repo, lưu lại bằng md
+- hướng dẫn cài đặt, chạy và sử dụng, lưu lại bằng md
+- hướng dẫn sử dụng chi tiết cho người dùng nâng cao, lưu lại bằng file md
+- hướng dẫn phát triển tiếp cho coder, lưu lại bằng file md
+(chuyển sang chế độ plan mode để thực hiện tất cả 1 lần, mọi quyền được cấp và không hỏi lại)
+
+ý nghĩa từng file code và refer giữa chúng, ý nghĩa các hàm chính, các flows chính, lưu lại thành md
+
+
+(chuyển sang chế độ plan mode để thực hiện tất cả 1 lần, mọi quyền được cấp và không hỏi lại)
+hãy thực hiện dịch thuật tất cả các doc md trong thư mục ./docs từ english sang vn
+và lưu bản dịch tương ứng ở ./docs_vi
