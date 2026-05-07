@@ -1,0 +1,22 @@
+---
+# Build và chạy Freqtrade từ mã nguồn repo hiện tại.
+# Dữ liệu & cấu hình: ./user_data (map vào /freqtrade/user_data trong container).
+# Chạy: run.bat  hoặc  docker compose -f docker-compose.local.yml up -d --build
+services:
+  freqtrade:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: freqtrade:local
+    restart: unless-stopped
+    container_name: freqtrade-local
+    volumes:
+      - "./user_data:/freqtrade/user_data"
+    ports:
+      - "127.0.0.1:8080:8080"
+    # Strategy is read from config.json ("strategy" key) to allow templates to switch class.
+    command: >
+      trade
+      --logfile /freqtrade/user_data/logs/freqtrade.log
+      --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite
+      --config /freqtrade/user_data/config.json

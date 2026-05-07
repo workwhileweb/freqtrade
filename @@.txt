@@ -1,0 +1,6 @@
+https://api.telegram.org/bot8760239865:AAH_0S9ef7jRqHMbYsfQAPSnTxP2WAp_Tlg/getUpdates.
+"id":-1003459361476,"title":"Trade Or Die"
+1087968824
+
+TOKEN=8760239865:AAH_0S9ef7jRqHMbYsfQAPSnTxP2WAp_Tlg
+CHAT_ID=-1003459361476

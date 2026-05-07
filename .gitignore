@@ -17,6 +17,9 @@ freqtrade-profit-plot.html
 freqtrade/rpc/api_server/ui/*
 build_helpers/ta-lib/*
 
+# Quick Config Builder venv
+.cb_venv/
+
 # Macos related
 .DS_Store
 

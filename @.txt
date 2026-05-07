@@ -13,3 +13,20 @@ tôi là thành viên mới của dự án này, hãy xem xét tìm hiểu toàn
 (chuyển sang chế độ plan mode để thực hiện tất cả 1 lần, mọi quyền được cấp và không hỏi lại)
 hãy thực hiện dịch thuật tất cả các doc md trong thư mục ./docs từ english sang vn
 và lưu bản dịch tương ứng ở ./docs_vi
+
+https://github.com/workwhileweb/freqtrade
+https://github.com/freqtrade/freqtrade
+
+
+xem xét repo và tạo 1 file run.bat để build docker image từ repo hiện tại,
+sau đó run bằng docker composer cho code hiện tại có map lưu toàn bộ data
+cần thiết vào thư mục ./user_data, setting cũng load từ thư mục đó
+
+
+hãy đọc hết các hướng dẫn sử dụng + các flow code của repo đã phân tích trước đó
+tạo 1 simple form
+sử dụng các câu hỏi options để tôi lựa chọn
+cùng các kịch bản trade (template) có sẵn hoặc tạo thêm
+để build 1 config nhanh chóng và dễ dàng
+-hãy nghiên cứu chi tiết và tự tạo ra 10 kịch bản trade config template có sẵn, lưu vào templates json files
+-hãy build config auto bằng gradio simple form. 1 lệnh build config+run.bat để mở build config json như đã làm ở trên
