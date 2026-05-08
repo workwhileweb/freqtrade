@@ -37,5 +37,19 @@
   "rpc.startup.trailing_stoploss": "Cắt lỗ động",
   "rpc.startup.summary": "🚀 *Sàn:* `{exchange_name}`\n💰 *Vốn mỗi lệnh:* `{stake_amount} {stake_currency}`\n🎯 *ROI tối thiểu:* `{minimal_roi}`\n🛑 *{stoploss_label}:* `{stoploss}`\n📐 *Nhồi thêm vị thế:* `{pos_adjust_enabled}`\n🕒 *Khung thời gian:* `{timeframe}`\n🧠 *Chiến lược:* `{strategy_name}`",
   "rpc.startup.search_pairs": "🔎 Đang tìm các cặp {stake_currency} để vào/thoát lệnh theo {pairlist}",
-  "rpc.startup.protections": "🛡️ Đang dùng Protections: \n{protections}"
+  "rpc.startup.protections": "🛡️ Đang dùng Protections: \n{protections}",
+  "rpc.start.already_running": "🟢 Bot đã chạy",
+  "rpc.start.starting": "🚀 Đang khởi động bot...",
+  "rpc.stop.stopping": "🛑 Đang dừng bot...",
+  "rpc.stop.already_stopped": "⛔ Bot đã dừng từ trước",
+  "rpc.config.reloading": "🔄 Đang tải lại cấu hình...",
+  "rpc.pause.starting_paused": "⏸️ Khởi động bot ở chế độ tạm dừng, sẽ không vào lệnh mới. Dùng /start để bật vào lệnh.",
+  "rpc.pause.paused": "⏸️ Đã tạm dừng, từ bây giờ sẽ không vào lệnh mới. Dùng /start để bật lại.",
+  "rpc.trade.reloaded_from_exchange": "✅ Đã tải lại lệnh từ sàn",
+  "worker.state.running": "🟢 đang chạy",
+  "worker.state.stopped": "⛔ đã dừng",
+  "worker.state.paused": "⏸️ tạm dừng",
+  "worker.state.reload_config": "🔄 tải lại cấu hình",
+  "worker.config_reloaded": "✅ Đã tải lại cấu hình, bot đang chạy",
+  "worker.process_died": "💥 Tiến trình bot đã dừng"
 }

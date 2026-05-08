@@ -42,6 +42,7 @@ from freqtrade.exceptions import ExchangeError, PricingError
 from freqtrade.exchange import Exchange, timeframe_to_minutes, timeframe_to_msecs
 from freqtrade.exchange.exchange_utils import price_to_precision
 from freqtrade.ft_types import AnnotationType
+from freqtrade.i18n import get_default_language, translate
 from freqtrade.loggers import bufferHandler
 from freqtrade.persistence import CustomDataWrapper, KeyValueStore, Order, PairLocks, Trade
 from freqtrade.persistence.models import PairLock, custom_data_rpc_wrapper
@@ -131,6 +132,9 @@ class RPC:
         self._config: Config = freqtrade.config
         if self._config.get("fiat_display_currency"):
             self._fiat_converter = CryptoToFiatConverter(self._config)
+
+    def _tr(self, key: str, **params: Any) -> str:
+        return translate(key, get_default_language(self._config), **params)
 
     @staticmethod
     def _rpc_show_config(
@@ -972,23 +976,23 @@ class RPC:
     def _rpc_start(self) -> dict[str, str]:
         """Handler for start"""
         if self._freqtrade.state == State.RUNNING:
-            return {"status": "already running", "code": "rpc.start.already_running"}
+            return {"status": self._tr("rpc.start.already_running"), "code": "rpc.start.already_running"}
 
         self._freqtrade.state = State.RUNNING
-        return {"status": "starting trader ...", "code": "rpc.start.starting"}
+        return {"status": self._tr("rpc.start.starting"), "code": "rpc.start.starting"}
 
     def _rpc_stop(self) -> dict[str, str]:
         """Handler for stop"""
         if self._freqtrade.state != State.STOPPED:
             self._freqtrade.state = State.STOPPED
-            return {"status": "stopping trader ...", "code": "rpc.stop.stopping"}
+            return {"status": self._tr("rpc.stop.stopping"), "code": "rpc.stop.stopping"}
 
-        return {"status": "already stopped", "code": "rpc.stop.already_stopped"}
+        return {"status": self._tr("rpc.stop.already_stopped"), "code": "rpc.stop.already_stopped"}
 
     def _rpc_reload_config(self) -> dict[str, str]:
         """Handler for reload_config."""
         self._freqtrade.state = State.RELOAD_CONFIG
-        return {"status": "Reloading config ...", "code": "rpc.config.reloading"}
+        return {"status": self._tr("rpc.config.reloading"), "code": "rpc.config.reloading"}
 
     def _rpc_pause(self) -> dict[str, str]:
         """
@@ -1000,15 +1004,12 @@ class RPC:
         if self._freqtrade.state == State.STOPPED:
             self._freqtrade.state = State.PAUSED
             return {
-                "status": (
-                    "starting bot with trader in paused state, no entries will occur. "
-                    "Run /start to enable entries."
-                ),
+                "status": self._tr("rpc.pause.starting_paused"),
                 "code": "rpc.pause.starting_paused",
             }
 
         return {
-            "status": "paused, no more entries will occur from now. Run /start to enable entries.",
+            "status": self._tr("rpc.pause.paused"),
             "code": "rpc.pause.paused",
         }
 
@@ -1022,7 +1023,7 @@ class RPC:
             raise RPCException(f"Could not find trade with id {trade_id}.")
 
         self._freqtrade.handle_onexchange_order(trade)
-        return {"status": "Reloaded from orders from exchange"}
+        return {"status": self._tr("rpc.trade.reloaded_from_exchange")}
 
     def __exec_force_exit(
         self,

@@ -18,6 +18,7 @@ from freqtrade.enums import RPCMessageType, State
 from freqtrade.exceptions import OperationalException, TemporaryError
 from freqtrade.exchange import timeframe_to_next_date
 from freqtrade.freqtradebot import FreqtradeBot
+from freqtrade.i18n import get_default_language, translate
 
 
 logger = logging.getLogger(__name__)
@@ -91,7 +92,9 @@ class Worker:
         # Log state transition
         if state != old_state:
             if old_state != State.RELOAD_CONFIG:
-                self.freqtrade.notify_status(f"{state.name.lower()}")
+                lang = get_default_language(self._config or {})
+                state_key = f"worker.state.{state.name.lower()}"
+                self.freqtrade.notify_status(translate(state_key, lang))
 
             logger.info(
                 f"Changing state{f' from {old_state.name}' if old_state else ''} to: {state.name}"
@@ -225,7 +228,8 @@ class Worker:
         # Load and validate config and create new instance of the bot
         self._init(True)
 
-        self.freqtrade.notify_status(f"{State(self.freqtrade.state)} after config reloaded")
+        lang = get_default_language(self._config or {})
+        self.freqtrade.notify_status(translate("worker.config_reloaded", lang))
 
         # Tell systemd that we completed reconfiguration
         self._notify("READY=1")
@@ -235,5 +239,6 @@ class Worker:
         self._notify("STOPPING=1")
 
         if self.freqtrade:
-            self.freqtrade.notify_status("process died")
+            lang = get_default_language(self._config or {})
+            self.freqtrade.notify_status(translate("worker.process_died", lang))
             self.freqtrade.cleanup()

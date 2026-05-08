@@ -37,5 +37,19 @@
   "rpc.startup.trailing_stoploss": "Trailing Stoploss",
   "rpc.startup.summary": "*Exchange:* `{exchange_name}`\n*Stake per trade:* `{stake_amount} {stake_currency}`\n*Minimum ROI:* `{minimal_roi}`\n*{stoploss_label}:* `{stoploss}`\n*Position adjustment:* `{pos_adjust_enabled}`\n*Timeframe:* `{timeframe}`\n*Strategy:* `{strategy_name}`",
   "rpc.startup.search_pairs": "Searching for {stake_currency} pairs to buy and sell based on {pairlist}",
-  "rpc.startup.protections": "Using Protections: \n{protections}"
+  "rpc.startup.protections": "Using Protections: \n{protections}",
+  "rpc.start.already_running": "Already running",
+  "rpc.start.starting": "Starting trader ...",
+  "rpc.stop.stopping": "Stopping trader ...",
+  "rpc.stop.already_stopped": "Already stopped",
+  "rpc.config.reloading": "Reloading config ...",
+  "rpc.pause.starting_paused": "Starting bot in paused state, no entries will occur. Run /start to enable entries.",
+  "rpc.pause.paused": "Paused, no more entries will occur from now. Run /start to enable entries.",
+  "rpc.trade.reloaded_from_exchange": "Reloaded from orders from exchange",
+  "worker.state.running": "running",
+  "worker.state.stopped": "stopped",
+  "worker.state.paused": "paused",
+  "worker.state.reload_config": "reload_config",
+  "worker.config_reloaded": "running after config reloaded",
+  "worker.process_died": "process died"
 }
