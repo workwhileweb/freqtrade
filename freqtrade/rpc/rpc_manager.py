@@ -4,6 +4,7 @@ This module contains class to manage RPC communications (Telegram, API, ...)
 
 import logging
 from collections import deque
+from collections.abc import Mapping
 
 from freqtrade.constants import Config
 from freqtrade.enums import NO_ECHO_MESSAGES, RPCMessageType
@@ -100,6 +101,53 @@ class RPCManager:
                         }
                     )
 
+    @staticmethod
+    def _format_stake_amount(stake_amount: float | str, stake_currency: str, lang: str) -> str:
+        if isinstance(stake_amount, str) and stake_amount.lower() == "unlimited":
+            return translate("rpc.startup.stake_unlimited", lang, stake_currency=stake_currency)
+        return translate(
+            "rpc.startup.stake_fixed",
+            lang,
+            stake_amount=stake_amount,
+            stake_currency=stake_currency,
+        )
+
+    @staticmethod
+    def _format_roi_details(minimal_roi: Mapping[str, float], lang: str) -> str:
+        roi_items = sorted(((int(k), v) for k, v in minimal_roi.items()), key=lambda x: x[0], reverse=True)
+        if not roi_items:
+            return translate("rpc.startup.roi_details_empty", lang)
+        return "; ".join(
+            [
+                translate(
+                    "rpc.startup.roi_item",
+                    lang,
+                    minute=minute,
+                    roi_pct=f"{roi * 100:.2f}%",
+                )
+                for minute, roi in roi_items
+            ]
+        )
+
+    @staticmethod
+    def _format_stoploss_details(stoploss: float, lang: str) -> str:
+        stoploss_pct = abs(stoploss) * 100
+        return translate("rpc.startup.stoploss_details", lang, stoploss_pct=f"{stoploss_pct:.2f}%")
+
+    def _strategy_description(self, config: Config, lang: str) -> str:
+        configured_desc = config.get("strategy_description")
+        if isinstance(configured_desc, str) and configured_desc.strip():
+            return configured_desc.strip()
+
+        strategy_obj = getattr(self._rpc._freqtrade, "strategy", None)
+        doc = getattr(strategy_obj, "__doc__", None)
+        if isinstance(doc, str):
+            for line in doc.splitlines():
+                cleaned = line.strip()
+                if cleaned:
+                    return cleaned
+        return translate("rpc.startup.strategy_description_default", lang)
+
     def startup_messages(self, config: Config, pairlist, protections) -> None:
         lang = get_default_language(config)
         if config["dry_run"]:
@@ -119,6 +167,11 @@ class RPCManager:
         if config["exchange"].get("demo_trading"):
             exchange_name += " (demo trading)"
         strategy_name = config.get("strategy", "")
+        strategy_description = self._strategy_description(config, lang)
+        stake_display = self._format_stake_amount(stake_amount, stake_currency, lang)
+        stake_details = translate("rpc.startup.stake_details", lang)
+        roi_details = self._format_roi_details(minimal_roi, lang)
+        stoploss_details = self._format_stoploss_details(stoploss, lang)
         pos_adjust_enabled = translate(
             "rpc.startup.on" if config["position_adjustment_enable"] else "rpc.startup.off", lang
         )
@@ -129,17 +182,20 @@ class RPCManager:
                     "rpc.startup.summary",
                     lang,
                     exchange_name=exchange_name,
-                    stake_amount=stake_amount,
-                    stake_currency=stake_currency,
+                    stake_display=stake_display,
+                    stake_details=stake_details,
                     minimal_roi=minimal_roi,
+                    roi_details=roi_details,
                     stoploss_label=translate(
                         "rpc.startup.trailing_stoploss" if trailing_stop else "rpc.startup.stoploss",
                         lang,
                     ),
                     stoploss=stoploss,
+                    stoploss_details=stoploss_details,
                     pos_adjust_enabled=pos_adjust_enabled,
                     timeframe=timeframe,
                     strategy_name=strategy_name,
+                    strategy_description=strategy_description,
                 ),
             }
         )

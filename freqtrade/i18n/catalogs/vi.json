@@ -35,7 +35,7 @@
   "rpc.startup.off": "Tắt",
   "rpc.startup.stoploss": "Cắt lỗ",
   "rpc.startup.trailing_stoploss": "Cắt lỗ động",
-  "rpc.startup.summary": "🚀 *Sàn:* `{exchange_name}`\n💰 *Vốn mỗi lệnh:* `{stake_amount} {stake_currency}`\n🎯 *ROI tối thiểu:* `{minimal_roi}`\n🛑 *{stoploss_label}:* `{stoploss}`\n📐 *Nhồi thêm vị thế:* `{pos_adjust_enabled}`\n🕒 *Khung thời gian:* `{timeframe}`\n🧠 *Chiến lược:* `{strategy_name}`",
+  "rpc.startup.summary": "🚀 *Sàn:* `{exchange_name}`\n💰 *Vốn mỗi lệnh:* `{stake_display}`\n🧾 _{stake_details}_\n🎯 *ROI tối thiểu:* `{minimal_roi}`\n🧾 _{roi_details}_\n🛑 *{stoploss_label}:* `{stoploss}`\n🧾 _{stoploss_details}_\n📐 *Nhồi thêm vị thế:* `{pos_adjust_enabled}`\n🕒 *Khung thời gian:* `{timeframe}`\n🧠 *Chiến lược:* `{strategy_name}`\n📝 *Mô tả chiến lược:* {strategy_description}",
   "rpc.startup.search_pairs": "🔎 Đang tìm các cặp {stake_currency} để vào/thoát lệnh theo {pairlist}",
   "rpc.startup.protections": "🛡️ Đang dùng Protections: \n{protections}",
   "rpc.start.already_running": "🟢 Bot đã chạy",
@@ -64,5 +64,12 @@
   "rpc.error.invalid_trade_id": "❌ Trade ID không hợp lệ",
   "rpc.error.no_open_order_for_trade": "📭 Không có lệnh mở cho trade ID này",
   "rpc.error.order_not_found": "🔎 Không tìm thấy lệnh",
-  "telegram.error.trade_id_not_set": "❌ Chưa truyền Trade ID."
+  "telegram.error.trade_id_not_set": "❌ Chưa truyền Trade ID.",
+  "rpc.startup.stake_unlimited": "không giới hạn ({stake_currency})",
+  "rpc.startup.stake_fixed": "{stake_amount} {stake_currency}",
+  "rpc.startup.stake_details": "Bot sẽ dùng toàn bộ số dư khả dụng cho mỗi lệnh mới (sau các giới hạn an toàn)." ,
+  "rpc.startup.roi_item": "sau {minute} phút: chốt lời tối thiểu {roi_pct}",
+  "rpc.startup.roi_details_empty": "Chưa có cấu hình ROI chi tiết.",
+  "rpc.startup.stoploss_details": "Nếu lỗ chạm khoảng {stoploss_pct} so với giá vào, bot sẽ thoát lệnh để hạn chế rủi ro.",
+  "rpc.startup.strategy_description_default": "_Chưa có mô tả chiến lược. Bạn có thể thêm `strategy_description` trong config để hiển thị rõ hơn._"
 }

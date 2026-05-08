@@ -35,7 +35,7 @@
   "rpc.startup.off": "Off",
   "rpc.startup.stoploss": "Stoploss",
   "rpc.startup.trailing_stoploss": "Trailing Stoploss",
-  "rpc.startup.summary": "*Exchange:* `{exchange_name}`\n*Stake per trade:* `{stake_amount} {stake_currency}`\n*Minimum ROI:* `{minimal_roi}`\n*{stoploss_label}:* `{stoploss}`\n*Position adjustment:* `{pos_adjust_enabled}`\n*Timeframe:* `{timeframe}`\n*Strategy:* `{strategy_name}`",
+  "rpc.startup.summary": "*Exchange:* `{exchange_name}`\n*Stake per trade:* `{stake_display}`\n_{stake_details}_\n*Minimum ROI:* `{minimal_roi}`\n_{roi_details}_\n*{stoploss_label}:* `{stoploss}`\n_{stoploss_details}_\n*Position adjustment:* `{pos_adjust_enabled}`\n*Timeframe:* `{timeframe}`\n*Strategy:* `{strategy_name}`\n*Strategy description:* {strategy_description}",
   "rpc.startup.search_pairs": "Searching for {stake_currency} pairs to buy and sell based on {pairlist}",
   "rpc.startup.protections": "Using Protections: \n{protections}",
   "rpc.start.already_running": "Already running",
@@ -64,5 +64,12 @@
   "rpc.error.invalid_trade_id": "Invalid trade_id.",
   "rpc.error.no_open_order_for_trade": "No open order for trade_id.",
   "rpc.error.order_not_found": "Order not found.",
-  "telegram.error.trade_id_not_set": "Trade-id not set."
+  "telegram.error.trade_id_not_set": "Trade-id not set.",
+  "rpc.startup.stake_unlimited": "unlimited ({stake_currency})",
+  "rpc.startup.stake_fixed": "{stake_amount} {stake_currency}",
+  "rpc.startup.stake_details": "The bot can allocate all available stake balance per new entry (respecting safety limits).",
+  "rpc.startup.roi_item": "after {minute} minutes: minimum take-profit {roi_pct}",
+  "rpc.startup.roi_details_empty": "No detailed ROI levels configured.",
+  "rpc.startup.stoploss_details": "If loss reaches about {stoploss_pct} from entry, the bot exits to cap downside risk.",
+  "rpc.startup.strategy_description_default": "_No strategy description found. Add `strategy_description` in config for a clearer startup summary._"
 }

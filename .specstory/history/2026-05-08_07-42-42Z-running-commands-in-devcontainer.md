@@ -5190,3 +5190,645 @@ Status: **completed**
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/rpc/rpc.py</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/rpc/telegram.py</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/i18n/catalogs/en.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Mình đã Việt hóa cụm lỗi RPC/Telegram trọng tâm. Giờ mình restart bot và check nhanh để chắc không lỗi runtime.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &</summary>
+
+```bash
+pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "content",
+  "path": "/tmp/freqtrade_trade.log",
+  "pattern": "Traceback|ERROR - Fatal|Sending rpc message: \\{'type': status"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/tmp/freqtrade_trade.log",
+  "pattern": "Traceback|ERROR - Fatal|Sending rpc message: \\{'type': status",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /tmp/freqtrade_trade.log</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &</summary>
+
+```bash
+nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Đã xong, mình vừa Việt hóa nốt nhóm lỗi/runtime chính trong RPC + Telegram ✅
+
+Các phần mình vừa làm:
+- `freqtrade/rpc/rpc.py`
+  - Chuyển nhiều `RPCException("...")` hardcode tiếng Anh sang i18n key:
+    - no active trade
+    - trader not running
+    - invalid argument/trade id
+    - failed exit trade
+    - force entry disabled
+    - short not allowed on spot
+    - symbol inactive
+    - max trades reached
+    - order not found
+    - invalid timescale
+- `freqtrade/rpc/telegram.py`
+  - `Trade-id not set.` -> key i18n `telegram.error.trade_id_not_set`
+- `freqtrade/i18n/catalogs/vi.json`
+  - Thêm bản dịch tiếng Việt có dấu + emoji cho toàn bộ key mới
+- `freqtrade/i18n/catalogs/en.json`
+  - Thêm fallback tiếng Anh tương ứng
+
+Kiểm tra runtime:
+- Đã thấy status mới trong log:
+  - `🟢 đang chạy`
+  - `💥 Tiến trình bot đã dừng`
+- Startup protection summary cũng đã lên tiếng Việt có dấu:
+  - `Thời gian chờ trong 5 nến`
+  - `... trong 48 nến`
+
+Bot đang được bật lại sau khi kiểm tra xong.
+
+---
+
+_**User**_
+
+tele message : 🚀 Sàn: binance
+💰 Vốn mỗi lệnh: unlimited USDT
+🎯 ROI tối thiểu: {'60': 0.01, '30': 0.02, '0': 0.04}
+🛑 Cắt lỗ: -0.1
+📐 Nhồi thêm vị thế: Tắt
+🕒 Khung thời gian: 5m
+🧠 Chiến lược: SampleStrategy <<<< chỗ 🧠 Chiến lược: SampleStrategy cần có 1 field description cho chiến lược và show trong tele cho người ta dễ hiểu, 💰 Vốn mỗi lệnh: unlimited USDT đổi thành không giới hạn (USDT), 🎯 ROI tối thiểu: {'60': 0.01, '30': 0.02, '0': 0.04}
+🛑 Cắt lỗ: -0.1 <<< các thông số này cần có detail giải thích trong tele message để cho dễ hiểu
+
+---
+
+_**Agent (default)**_
+
+Mình sẽ chỉnh format startup Telegram message để dễ hiểu hơn: thêm mô tả chiến lược, đổi stake `unlimited` thành “không giới hạn”, và bổ sung diễn giải ROI/Stoploss ngay trong message.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /workspaces/freqtrade/freqtrade/rpc/rpc_manager.py</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/rpc/rpc_manager.py</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /workspaces/freqtrade/freqtrade/i18n/catalogs/en.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/rpc/rpc_manager.py</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/i18n/catalogs/en.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Mình đã cập nhật template message theo đúng yêu cầu; giờ mình chạy check JSON + restart bot để xác nhận startup message Telegram đã đổi format.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: python - <<'PY'
+import json
+for p in [
+ '/workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json',
+ '/workspaces/freqtrade/freqtrade/i18n/catalogs/en.json',
+]:
+    json.load(open(p, encoding='utf-8'))
+    print('ok', p)
+PY</summary>
+
+```bash
+python - <<'PY'
+import json
+for p in [
+ '/workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json',
+ '/workspaces/freqtrade/freqtrade/i18n/catalogs/en.json',
+]:
+    json.load(open(p, encoding='utf-8'))
+    print('ok', p)
+PY
+```
+
+```
+ok /workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json
+ok /workspaces/freqtrade/freqtrade/i18n/catalogs/en.json
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &</summary>
+
+```bash
+pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /tmp/freqtrade_trade.log</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: python - <<'PY'
+import inspect
+from freqtrade.rpc import rpc_manager
+from freqtrade.i18n import translate
+print('rpc_manager file:', rpc_manager.__file__)
+print('has stake_display:', 'stake_display' in inspect.getsource(rpc_manager.RPCManager.startup_messages))
+print(translate('rpc.startup.summary','vi',exchange_name='binance',stake_display='không giới hạn (USDT)',stake_details='chi tiết vốn',minimal_roi={'0':0.04},roi_details='roi detail',stoploss_label='Cắt lỗ',stoploss=-0.1,stoploss_details='stoploss detail',pos_adjust_enabled='Tắt',timeframe='5m',strategy_name='SampleStrategy',strategy_description='Mô tả'))
+PY</summary>
+
+```bash
+python - <<'PY'
+import inspect
+from freqtrade.rpc import rpc_manager
+from freqtrade.i18n import translate
+print('rpc_manager file:', rpc_manager.__file__)
+print('has stake_display:', 'stake_display' in inspect.getsource(rpc_manager.RPCManager.startup_messages))
+print(translate('rpc.startup.summary','vi',exchange_name='binance',stake_display='không giới hạn (USDT)',stake_details='chi tiết vốn',minimal_roi={'0':0.04},roi_details='roi detail',stoploss_label='Cắt lỗ',stoploss=-0.1,stoploss_details='stoploss detail',pos_adjust_enabled='Tắt',timeframe='5m',strategy_name='SampleStrategy',strategy_description='Mô tả'))
+PY
+```
+
+```
+rpc_manager file: /workspaces/freqtrade/freqtrade/rpc/rpc_manager.py
+has stake_display: True
+🚀 *Sàn:* &#96;binance&#96;
+💰 *Vốn mỗi lệnh:* &#96;không giới hạn (USDT)&#96;
+🧾 _chi tiết vốn_
+🎯 *ROI tối thiểu:* &#96;{'0': 0.04}&#96;
+🧾 _roi detail_
+🛑 *Cắt lỗ:* &#96;-0.1&#96;
+🧾 _stoploss detail_
+📐 *Nhồi thêm vị thế:* &#96;Tắt&#96;
+🕒 *Khung thời gian:* &#96;5m&#96;
+🧠 *Chiến lược:* &#96;SampleStrategy&#96;
+📝 *Mô tả chiến lược:* Mô tả
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &</summary>
+
+```bash
+pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /tmp/freqtrade_trade.log</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /tmp/freqtrade_trade.log</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: rm -f /tmp/freqtrade_trade_new.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade_new.log 2>&1 &</summary>
+
+```bash
+rm -f /tmp/freqtrade_trade_new.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade_new.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /tmp/freqtrade_trade_new.log</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Chuẩn luôn — mình đã chỉnh đúng theo yêu cầu của bạn và đã verify thành công trên log runtime.
+
+Startup Telegram message giờ đã có:
+
+- `💰 Vốn mỗi lệnh: không giới hạn (USDT)` (đúng format bạn muốn)
+- `🎯 ROI tối thiểu` kèm dòng giải thích chi tiết từng mốc:
+  - sau 60 phút: 1.00%
+  - sau 30 phút: 2.00%
+  - sau 0 phút: 4.00%
+- `🛑 Cắt lỗ` kèm dòng diễn giải rủi ro dễ hiểu
+- `🧠 Chiến lược` kèm thêm:
+  - `📝 Mô tả chiến lược: ...`
+
+Hiện mô tả đang lấy từ docstring strategy (`SampleStrategy`), nên đang ra:
+- `This is a sample strategy to inspire you.`
+
+Nếu bạn muốn mô tả tiếng Việt riêng theo ý bạn, mình có thể set cố định bằng field mới trong config:
+- `strategy_description`: `"Mô tả tiếng Việt của chiến lược..."`
+
+Mình có thêm luôn field này vào `user_data/config.json` cho bạn không? **yes/no**
+
+---
+
+_**User**_
+
+yes
+
+---
+
+_**Agent (default)**_
+
+Mình sẽ thêm `strategy_description` vào config bằng tiếng Việt, rồi restart bot để Telegram hiển thị đúng mô tả mới ngay.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/user_data/config.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade_new.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade_new.log 2>&1 &</summary>
+
+```bash
+pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade_new.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade_new.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
