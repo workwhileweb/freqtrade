@@ -972,23 +972,23 @@ class RPC:
     def _rpc_start(self) -> dict[str, str]:
         """Handler for start"""
         if self._freqtrade.state == State.RUNNING:
-            return {"status": "already running"}
+            return {"status": "already running", "code": "rpc.start.already_running"}
 
         self._freqtrade.state = State.RUNNING
-        return {"status": "starting trader ..."}
+        return {"status": "starting trader ...", "code": "rpc.start.starting"}
 
     def _rpc_stop(self) -> dict[str, str]:
         """Handler for stop"""
         if self._freqtrade.state != State.STOPPED:
             self._freqtrade.state = State.STOPPED
-            return {"status": "stopping trader ..."}
+            return {"status": "stopping trader ...", "code": "rpc.stop.stopping"}
 
-        return {"status": "already stopped"}
+        return {"status": "already stopped", "code": "rpc.stop.already_stopped"}
 
     def _rpc_reload_config(self) -> dict[str, str]:
         """Handler for reload_config."""
         self._freqtrade.state = State.RELOAD_CONFIG
-        return {"status": "Reloading config ..."}
+        return {"status": "Reloading config ...", "code": "rpc.config.reloading"}
 
     def _rpc_pause(self) -> dict[str, str]:
         """
@@ -1003,11 +1003,13 @@ class RPC:
                 "status": (
                     "starting bot with trader in paused state, no entries will occur. "
                     "Run /start to enable entries."
-                )
+                ),
+                "code": "rpc.pause.starting_paused",
             }
 
         return {
-            "status": "paused, no more entries will occur from now. Run /start to enable entries."
+            "status": "paused, no more entries will occur from now. Run /start to enable entries.",
+            "code": "rpc.pause.paused",
         }
 
     def _rpc_reload_trade_from_exchange(self, trade_id: int) -> dict[str, str]:

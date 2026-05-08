@@ -17,13 +17,13 @@ class CooldownPeriod(IProtection):
         """
         LockReason to use
         """
-        return f"Cooldown period for {self.unlock_reason_time_element}."
+        return f"Thời gian chờ trong {self.unlock_reason_time_element}."
 
     def short_desc(self) -> str:
         """
         Short method description - used for startup messages
         """
-        return f"{self.name} - Cooldown period {self.unlock_reason_time_element}."
+        return f"{self.name} - Thời gian chờ {self.unlock_reason_time_element}."
 
     def _cooldown_period(self, pair: str, date_now: datetime) -> ProtectionReturn | None:
         """

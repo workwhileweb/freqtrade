@@ -33,6 +33,7 @@ class Version(BaseModel):
 
 class StatusMsg(BaseModel):
     status: str
+    code: str | None = None
 
 
 class BgJobStarted(StatusMsg):
@@ -56,6 +57,14 @@ class BackgroundTaskResult(BaseModel):
 
 class ResultMsg(BaseModel):
     result: str
+
+
+class UserPreferences(BaseModel):
+    locale: str
+
+
+class UserPreferencesUpdate(BaseModel):
+    locale: Literal["en", "vi"]
 
 
 class Balance(BaseModel):

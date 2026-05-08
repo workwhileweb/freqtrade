@@ -30,8 +30,8 @@ class MaxDrawdown(IProtection):
         Short method description - used for startup-messages
         """
         return (
-            f"{self.name} - Max drawdown protection, stop trading if drawdown is > "
-            f"{self._max_allowed_drawdown} within {self.lookback_period_str}."
+            f"{self.name} - Bảo vệ sụt giảm tối đa, dừng giao dịch nếu drawdown > "
+            f"{self._max_allowed_drawdown} trong {self.lookback_period_str}."
         )
 
     def _reason(self, drawdown: float) -> str:
@@ -39,8 +39,8 @@ class MaxDrawdown(IProtection):
         LockReason to use
         """
         return (
-            f"{drawdown} passed {self._max_allowed_drawdown} in {self.lookback_period_str}, "
-            f"locking {self.unlock_reason_time_element}."
+            f"{drawdown} vượt {self._max_allowed_drawdown} trong {self.lookback_period_str}, "
+            f"khóa giao dịch trong {self.unlock_reason_time_element}."
         )
 
     def _max_drawdown(self, date_now: datetime, starting_balance: float) -> ProtectionReturn | None:

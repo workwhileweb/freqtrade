@@ -7,6 +7,7 @@ from collections import deque
 
 from freqtrade.constants import Config
 from freqtrade.enums import NO_ECHO_MESSAGES, RPCMessageType
+from freqtrade.i18n import get_default_language, translate
 from freqtrade.rpc import RPC, RPCHandler
 from freqtrade.rpc.rpc_types import RPCSendMsg
 
@@ -100,11 +101,12 @@ class RPCManager:
                     )
 
     def startup_messages(self, config: Config, pairlist, protections) -> None:
+        lang = get_default_language(config)
         if config["dry_run"]:
             self.send_msg(
                 {
                     "type": RPCMessageType.WARNING,
-                    "status": "Dry run is enabled. All trades are simulated.",
+                    "status": translate("rpc.startup.dry_run_warning", lang),
                 }
             )
         stake_currency = config["stake_currency"]
@@ -117,28 +119,58 @@ class RPCManager:
         if config["exchange"].get("demo_trading"):
             exchange_name += " (demo trading)"
         strategy_name = config.get("strategy", "")
-        pos_adjust_enabled = "On" if config["position_adjustment_enable"] else "Off"
+        pos_adjust_enabled = translate(
+            "rpc.startup.on" if config["position_adjustment_enable"] else "rpc.startup.off", lang
+        )
         self.send_msg(
             {
                 "type": RPCMessageType.STARTUP,
-                "status": f"*Exchange:* `{exchange_name}`\n"
-                f"*Stake per trade:* `{stake_amount} {stake_currency}`\n"
-                f"*Minimum ROI:* `{minimal_roi}`\n"
-                f"*{'Trailing ' if trailing_stop else ''}Stoploss:* `{stoploss}`\n"
-                f"*Position adjustment:* `{pos_adjust_enabled}`\n"
-                f"*Timeframe:* `{timeframe}`\n"
-                f"*Strategy:* `{strategy_name}`",
+                "status": translate(
+                    "rpc.startup.summary",
+                    lang,
+                    exchange_name=exchange_name,
+                    stake_amount=stake_amount,
+                    stake_currency=stake_currency,
+                    minimal_roi=minimal_roi,
+                    stoploss_label=translate(
+                        "rpc.startup.trailing_stoploss" if trailing_stop else "rpc.startup.stoploss",
+                        lang,
+                    ),
+                    stoploss=stoploss,
+                    pos_adjust_enabled=pos_adjust_enabled,
+                    timeframe=timeframe,
+                    strategy_name=strategy_name,
+                ),
             }
         )
         self.send_msg(
             {
                 "type": RPCMessageType.STARTUP,
-                "status": f"Searching for {stake_currency} pairs to buy and sell "
-                f"based on {pairlist.short_desc()}",
+                "status": translate(
+                    "rpc.startup.search_pairs",
+                    lang,
+                    stake_currency=stake_currency,
+                    pairlist=pairlist.short_desc(),
+                ),
             }
         )
         if len(protections.name_list) > 0:
             prots = "\n".join([p for prot in protections.short_desc() for k, p in prot.items()])
+            # Best-effort normalization to keep protection summaries localized consistently.
+            if lang == "vi":
+                replacements = {
+                    " for ": " trong ",
+                    " candles": " nến",
+                    " candle": " nến",
+                    " minutes": " phút",
+                    " minute": " phút",
+                    "drawdown": "sụt giảm",
+                }
+                for src, dst in replacements.items():
+                    prots = prots.replace(src, dst)
             self.send_msg(
-                {"type": RPCMessageType.STARTUP, "status": f"Using Protections: \n{prots}"}
+                {
+                    "type": RPCMessageType.STARTUP,
+                    "status": translate("rpc.startup.protections", lang, protections=prots),
+                }
             )

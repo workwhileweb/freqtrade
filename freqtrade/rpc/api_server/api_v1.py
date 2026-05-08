@@ -8,7 +8,9 @@ from fastapi.exceptions import HTTPException
 from freqtrade import __version__
 from freqtrade.enums import RunMode, State
 from freqtrade.exceptions import OperationalException
+from freqtrade.i18n import get_user_language, set_user_language, translate
 from freqtrade.rpc import RPC
+from freqtrade.rpc.api_server.api_auth import http_basic_or_jwt_token
 from freqtrade.rpc.api_server.api_pairlists import handleExchangePayload
 from freqtrade.rpc.api_server.api_schemas import (
     Health,
@@ -18,8 +20,11 @@ from freqtrade.rpc.api_server.api_schemas import (
     Ping,
     PlotConfig,
     ShowConfig,
+    StatusMsg,
     StrategyResponse,
     SysInfo,
+    UserPreferences,
+    UserPreferencesUpdate,
     Version,
 )
 from freqtrade.rpc.api_server.deps import (
@@ -201,3 +206,21 @@ def sysinfo():
 @router.get("/health", response_model=Health, tags=["Info"])
 def health(rpc: RPC = Depends(get_rpc)):
     return rpc.health()
+
+
+@router.get("/user/preferences", response_model=UserPreferences, tags=["Info"])
+def get_user_preferences(username: str = Depends(http_basic_or_jwt_token), config=Depends(get_config)):
+    return {"locale": get_user_language(username, config)}
+
+
+@router.put("/user/preferences", response_model=StatusMsg, tags=["Info"])
+def set_user_preferences(
+    payload: UserPreferencesUpdate,
+    username: str = Depends(http_basic_or_jwt_token),
+    config=Depends(get_config),
+):
+    locale = set_user_language(username, payload.locale)
+    return {
+        "status": translate("api.userprefs.updated", locale),
+        "code": "api.userprefs.updated",
+    }

@@ -8,6 +8,7 @@ from pydantic import ValidationError
 
 from freqtrade.enums import RPCMessageType, RPCRequestType
 from freqtrade.exceptions import FreqtradeException
+from freqtrade.i18n import get_default_language, translate
 from freqtrade.rpc.api_server.api_auth import validate_ws_token
 from freqtrade.rpc.api_server.deps import get_message_stream, get_rpc
 from freqtrade.rpc.api_server.ws.channel import WebSocketChannel, create_channel
@@ -37,7 +38,9 @@ async def channel_reader(channel: WebSocketChannel, rpc: RPC):
             await _process_consumer_request(message, channel, rpc)
         except FreqtradeException:
             logger.exception(f"Error processing request from {channel}")
-            response = WSErrorMessage(data="Error processing request")
+            response = WSErrorMessage(
+                data=translate("api.ws.error_processing_request", get_default_language(rpc._freqtrade.config))
+            )
 
             await channel.send(response.dict(exclude_none=True))
 

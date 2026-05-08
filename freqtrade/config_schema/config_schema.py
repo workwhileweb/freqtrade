@@ -582,6 +582,12 @@ CONF_SCHEMA = {
                     "type": "number",
                     "minimum": 0.0,
                 },
+                "language": {
+                    "description": "Default Telegram language for runtime messages.",
+                    "type": "string",
+                    "enum": ["en", "vi"],
+                    "default": "en",
+                },
                 "notification_settings": {
                     "description": "Settings for different types of notifications.",
                     "type": "object",
@@ -767,6 +773,12 @@ CONF_SCHEMA = {
                     "description": "Logging verbosity level.",
                     "type": "string",
                     "enum": ["error", "info"],
+                },
+                "default_language": {
+                    "description": "Default API language.",
+                    "type": "string",
+                    "enum": ["en", "vi"],
+                    "default": "en",
                 },
             },
             "required": [

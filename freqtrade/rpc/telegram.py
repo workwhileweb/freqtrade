@@ -38,8 +38,10 @@ from freqtrade.__init__ import __version__
 from freqtrade.constants import DUST_PER_COIN, Config
 from freqtrade.enums import MarketDirection, RPCMessageType, SignalDirection, TradingMode
 from freqtrade.exceptions import OperationalException
+from freqtrade.i18n import TELEGRAM_LANGUAGE_KEY, get_default_language, normalize_language, translate
 from freqtrade.misc import chunks, plural
 from freqtrade.persistence import Trade
+from freqtrade.persistence.key_value_store import KeyValueStore
 from freqtrade.rpc import RPC, RPCException, RPCHandler
 from freqtrade.rpc.rpc_types import RPCEntryMsg, RPCExitMsg, RPCOrderMsg, RPCSendMsg
 from freqtrade.util import (
@@ -153,8 +155,19 @@ class Telegram(RPCHandler):
 
         self._app: Application
         self._loop: asyncio.AbstractEventLoop
+        self._language = normalize_language(
+            KeyValueStore.get_string_value(TELEGRAM_LANGUAGE_KEY) or get_default_language(config)
+        )
         self._init_keyboard()
         self._start_thread()
+
+    def _t(self, key: str, **params: Any) -> str:
+        return translate(key, self._language, **params)
+
+    def _set_language(self, language: str) -> str:
+        self._language = normalize_language(language)
+        KeyValueStore.store_value(TELEGRAM_LANGUAGE_KEY, self._language)
+        return self._language
 
     def _start_thread(self):
         """
@@ -221,6 +234,8 @@ class Telegram(RPCHandler):
             r"/version$",
             r"/marketdir (long|short|even|none)$",
             r"/marketdir$",
+            r"/lang$",
+            r"/lang (en|vi)$",
         ]
         # Create keys for generation
         valid_keys_print = [k.replace("$", "") for k in valid_keys]
@@ -303,6 +318,7 @@ class Telegram(RPCHandler):
             CommandHandler("help", self._help),
             CommandHandler("version", self._version),
             CommandHandler("marketdir", self._changemarketdir),
+            CommandHandler("lang", self._lang),
             CommandHandler("order", self._order),
             CommandHandler("list_custom_data", self._list_custom_data),
             CommandHandler("tg_info", self._tg_info),
@@ -416,10 +432,10 @@ class Telegram(RPCHandler):
         emoji = "\N{CHECK MARK}" if is_fill else "\N{LARGE BLUE CIRCLE}"
 
         terminology = {
-            "1_enter": "New Trade",
-            "1_entered": "New Trade filled",
-            "x_enter": "Increasing position",
-            "x_entered": "Position increase filled",
+            "1_enter": self._t("telegram.entry.new_trade"),
+            "1_entered": self._t("telegram.entry.new_trade_filled"),
+            "x_enter": self._t("telegram.entry.increase_position"),
+            "x_entered": self._t("telegram.entry.increase_position_filled"),
         }
 
         key = f"{'x' if msg['sub_trade'] else '1'}_{'entered' if is_fill else 'enter'}"
@@ -428,25 +444,32 @@ class Telegram(RPCHandler):
         message = (
             f"{emoji} *{self._exchange_from_msg(msg)}:*"
             f" {wording} (#{msg['trade_id']})\n"
-            f"*Pair:* `{msg['pair']}`\n"
+            f"*{self._t('telegram.labels.pair')}:* `{msg['pair']}`\n"
         )
         message += self._add_analyzed_candle(msg["pair"])
-        message += f"*Enter Tag:* `{msg['enter_tag']}`\n" if msg.get("enter_tag") else ""
-        message += f"*Amount:* `{round_value(msg['amount'], 8)}`\n"
-        message += f"*Direction:* `{msg['direction']}"
+        message += (
+            f"*{self._t('telegram.labels.enter_tag')}:* `{msg['enter_tag']}`\n"
+            if msg.get("enter_tag")
+            else ""
+        )
+        message += f"*{self._t('telegram.labels.amount')}:* `{round_value(msg['amount'], 8)}`\n"
+        message += f"*{self._t('telegram.labels.direction')}:* `{msg['direction']}"
         if msg.get("leverage") and msg.get("leverage", 1.0) != 1.0:
             message += f" ({msg['leverage']:.3g}x)"
         message += "`\n"
-        message += f"*Open Rate:* `{fmt_coin2(msg['open_rate'], msg['quote_currency'])}`\n"
+        message += f"*{self._t('telegram.labels.open_rate')}:* `{fmt_coin2(msg['open_rate'], msg['quote_currency'])}`\n"
         if msg["type"] == RPCMessageType.ENTRY and msg["current_rate"]:
             message += (
-                f"*Current Rate:* `{fmt_coin2(msg['current_rate'], msg['quote_currency'])}`\n"
+                f"*{self._t('telegram.labels.current_rate')}:* `{fmt_coin2(msg['current_rate'], msg['quote_currency'])}`\n"
             )
 
         profit_fiat_extra = self.__format_profit_fiat(msg, "stake_amount")  # type: ignore
         total = fmt_coin(msg["stake_amount"], msg["quote_currency"])
 
-        message += f"*{'New ' if msg['sub_trade'] else ''}Total:* `{total}{profit_fiat_extra}`"
+        total_label = (
+            self._t("telegram.labels.new_total") if msg["sub_trade"] else self._t("telegram.labels.total")
+        )
+        message += f"*{total_label}:* `{total}{profit_fiat_extra}`"
 
         return message
 
@@ -550,33 +573,38 @@ class Telegram(RPCHandler):
             msg["type"] == RPCMessageType.ENTRY_CANCEL or msg["type"] == RPCMessageType.EXIT_CANCEL
         ):
             message_side = "enter" if msg["type"] == RPCMessageType.ENTRY_CANCEL else "exit"
-            message = (
-                f"\N{WARNING SIGN} *{self._exchange_from_msg(msg)}:* "
-                f"Cancelling {'partial ' if msg.get('sub_trade') else ''}"
-                f"{message_side} Order for {msg['pair']} "
-                f"(#{msg['trade_id']}). Reason: {msg['reason']}."
+            message = f"\N{WARNING SIGN} *{self._exchange_from_msg(msg)}:* " + self._t(
+                "telegram.cancel.order",
+                scope=self._t("telegram.cancel.partial_scope") if msg.get("sub_trade") else "",
+                side=message_side,
+                pair=msg["pair"],
+                trade_id=msg["trade_id"],
+                reason=msg["reason"],
             )
 
         elif msg["type"] == RPCMessageType.PROTECTION_TRIGGER:
-            message = (
-                f"*Protection* triggered due to {msg['reason']}. "
-                f"`{msg['pair']}` will be locked until `{msg['lock_end_time']}`."
+            message = self._t(
+                "telegram.protection.pair_lock",
+                reason=msg["reason"],
+                pair=msg["pair"],
+                lock_end_time=msg["lock_end_time"],
             )
 
         elif msg["type"] == RPCMessageType.PROTECTION_TRIGGER_GLOBAL:
-            message = (
-                f"*Protection* triggered due to {msg['reason']}. "
-                f"*All pairs* will be locked until `{msg['lock_end_time']}`."
+            message = self._t(
+                "telegram.protection.global_lock",
+                reason=msg["reason"],
+                lock_end_time=msg["lock_end_time"],
             )
 
         elif msg["type"] == RPCMessageType.STATUS:
-            message = f"*Status:* `{msg['status']}`"
+            message = f"*{self._t('telegram.status_prefix')}:* `{msg['status']}`"
 
         elif msg["type"] == RPCMessageType.WARNING:
-            message = f"\N{WARNING SIGN} *Warning:* `{msg['status']}`"
+            message = f"\N{WARNING SIGN} *{self._t('telegram.warning_prefix')}:* `{msg['status']}`"
         elif msg["type"] == RPCMessageType.EXCEPTION:
             # Errors will contain exceptions, which are wrapped in triple ticks.
-            message = f"\N{WARNING SIGN} *ERROR:* \n {msg['status']}"
+            message = f"\N{WARNING SIGN} *{self._t('telegram.error_prefix')}:* \n {msg['status']}"
 
         elif msg["type"] == RPCMessageType.STARTUP:
             message = f"{msg['status']}"
@@ -1351,7 +1379,7 @@ class Telegram(RPCHandler):
         :return: None
         """
         msg = self._rpc._rpc_start()
-        await self._send_msg(f"Status: `{msg['status']}`")
+        await self._send_msg(f"{self._t('telegram.status_prefix')}: `{msg['status']}`")
 
     @authorized_only
     async def _stop(self, update: Update, context: CallbackContext) -> None:
@@ -1363,7 +1391,7 @@ class Telegram(RPCHandler):
         :return: None
         """
         msg = self._rpc._rpc_stop()
-        await self._send_msg(f"Status: `{msg['status']}`")
+        await self._send_msg(f"{self._t('telegram.status_prefix')}: `{msg['status']}`")
 
     @authorized_only
     async def _reload_config(self, update: Update, context: CallbackContext) -> None:
@@ -1375,7 +1403,7 @@ class Telegram(RPCHandler):
         :return: None
         """
         msg = self._rpc._rpc_reload_config()
-        await self._send_msg(f"Status: `{msg['status']}`")
+        await self._send_msg(f"{self._t('telegram.status_prefix')}: `{msg['status']}`")
 
     @authorized_only
     async def _pause(self, update: Update, context: CallbackContext) -> None:
@@ -1387,7 +1415,19 @@ class Telegram(RPCHandler):
         :return: None
         """
         msg = self._rpc._rpc_pause()
-        await self._send_msg(f"Status: `{msg['status']}`")
+        await self._send_msg(f"{self._t('telegram.status_prefix')}: `{msg['status']}`")
+
+    @authorized_only
+    async def _lang(self, update: Update, context: CallbackContext) -> None:
+        if not context.args:
+            await self._send_msg(self._t("telegram.command.lang.current", language=self._language))
+            return
+        requested = normalize_language(context.args[0])
+        if context.args[0].lower() not in ("en", "vi"):
+            await self._send_msg(self._t("telegram.command.lang.invalid"))
+            return
+        selected = self._set_language(requested)
+        await self._send_msg(self._t("telegram.command.lang.updated", language=selected))
 
     @authorized_only
     async def _reload_trade_from_exchange(self, update: Update, context: CallbackContext) -> None:
@@ -1398,7 +1438,7 @@ class Telegram(RPCHandler):
             raise RPCException("Trade-id not set.")
         trade_id = int(context.args[0])
         msg = self._rpc._rpc_reload_trade_from_exchange(trade_id)
-        await self._send_msg(f"Status: `{msg['status']}`")
+        await self._send_msg(f"{self._t('telegram.status_prefix')}: `{msg['status']}`")
 
     @authorized_only
     async def _force_exit(self, update: Update, context: CallbackContext) -> None:
@@ -1985,6 +2025,7 @@ class Telegram(RPCHandler):
             "Avg. holding durations for buys and sells.`\n"
             "*/help:* `This help message`\n"
             "*/version:* `Show version`\n"
+            f"{self._t('telegram.command.help.lang')}\n"
         )
 
         await self._send_msg(message, parse_mode=ParseMode.MARKDOWN)

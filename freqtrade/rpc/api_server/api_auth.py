@@ -8,6 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, WebSocket, status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security.http import HTTPBasic, HTTPBasicCredentials
 
+from freqtrade.i18n import normalize_language, translate
 from freqtrade.rpc.api_server.api_schemas import AccessAndRefreshToken, AccessToken
 from freqtrade.rpc.api_server.deps import get_api_config
 
@@ -30,6 +31,10 @@ def verify_auth(api_config, username: str, password: str):
 httpbasic = HTTPBasic(auto_error=False)
 security = HTTPBasic()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token", auto_error=False)
+
+
+def _api_language(api_config: dict[str, Any]) -> str:
+    return normalize_language(api_config.get("default_language", "en"))
 
 
 def get_user_from_token(token, secret_key: str, token_type: str = "access") -> str:  # noqa: S107
@@ -118,7 +123,7 @@ def http_basic_or_jwt_token(
 
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Unauthorized",
+        detail=translate("api.auth.unauthorized", _api_language(api_config)),
     )
 
 
@@ -143,9 +148,10 @@ def token_login(
             "refresh_token": refresh_token,
         }
     else:
+        lang = _api_language(api_config)
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail=translate("api.auth.bad_login", lang),
         )
 
 

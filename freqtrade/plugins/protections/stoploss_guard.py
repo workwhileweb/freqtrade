@@ -28,8 +28,8 @@ class StoplossGuard(IProtection):
         Short method description - used for startup-messages
         """
         return (
-            f"{self.name} - Frequent Stoploss Guard, {self._trade_limit} stoplosses "
-            f"with profit < {self._profit_limit:.2%} within {self.lookback_period_str}."
+            f"{self.name} - Bảo vệ stoploss liên tiếp: {self._trade_limit} stoploss "
+            f"với lợi nhuận < {self._profit_limit:.2%} trong {self.lookback_period_str}."
         )
 
     def _reason(self) -> str:
@@ -37,8 +37,8 @@ class StoplossGuard(IProtection):
         LockReason to use
         """
         return (
-            f"{self._trade_limit} stoplosses in {self._lookback_period} min, "
-            f"locking {self.unlock_reason_time_element}."
+            f"{self._trade_limit} stoploss trong {self._lookback_period} phút, "
+            f"khóa giao dịch trong {self.unlock_reason_time_element}."
         )
 
     def _stoploss_guard(

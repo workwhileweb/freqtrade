@@ -25,6 +25,8 @@ KeyStoreKeys = Literal[
     "binance_migration",
     "wallet_history_migration",
     "wallet_history_migration_date",
+    "telegram_language",
+    "user_language_preferences",
 ]
 
 

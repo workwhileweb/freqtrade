@@ -26,8 +26,8 @@ class LowProfitPairs(IProtection):
         Short method description - used for startup-messages
         """
         return (
-            f"{self.name} - Low Profit Protection, locks pairs with "
-            f"profit < {self._required_profit} within {self.lookback_period_str}."
+            f"{self.name} - Bảo vệ lợi nhuận thấp, khóa cặp có "
+            f"lợi nhuận < {self._required_profit} trong {self.lookback_period_str}."
         )
 
     def _reason(self, profit: float) -> str:
@@ -35,8 +35,8 @@ class LowProfitPairs(IProtection):
         LockReason to use
         """
         return (
-            f"{profit} < {self._required_profit} in {self.lookback_period_str}, "
-            f"locking {self.unlock_reason_time_element}."
+            f"{profit} < {self._required_profit} trong {self.lookback_period_str}, "
+            f"khóa giao dịch trong {self.unlock_reason_time_element}."
         )
 
     def _low_profit(

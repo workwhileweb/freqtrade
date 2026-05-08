@@ -66,10 +66,10 @@ class IProtection(LoggingMixin, ABC):
         if self._stop_duration_candles:
             return (
                 f"{self._stop_duration_candles} "
-                f"{plural(self._stop_duration_candles, 'candle', 'candles')}"
+                f"{plural(self._stop_duration_candles, 'nến', 'nến')}"
             )
         else:
-            return f"{self._stop_duration} {plural(self._stop_duration, 'minute', 'minutes')}"
+            return f"{self._stop_duration} {plural(self._stop_duration, 'phút', 'phút')}"
 
     @property
     def lookback_period_str(self) -> str:
@@ -79,10 +79,10 @@ class IProtection(LoggingMixin, ABC):
         if self._lookback_period_candles:
             return (
                 f"{self._lookback_period_candles} "
-                f"{plural(self._lookback_period_candles, 'candle', 'candles')}"
+                f"{plural(self._lookback_period_candles, 'nến', 'nến')}"
             )
         else:
-            return f"{self._lookback_period} {plural(self._lookback_period, 'minute', 'minutes')}"
+            return f"{self._lookback_period} {plural(self._lookback_period, 'phút', 'phút')}"
 
     @property
     def unlock_reason_time_element(self) -> str:
@@ -90,9 +90,9 @@ class IProtection(LoggingMixin, ABC):
         Output configured unlock time or stop duration
         """
         if self._unlock_at is not None:
-            return f"until {self._unlock_at}"
+            return f"đến {self._unlock_at}"
         else:
-            return f"for {self.stop_duration_str}"
+            return f"trong {self.stop_duration_str}"
 
     @abstractmethod
     def short_desc(self) -> str:

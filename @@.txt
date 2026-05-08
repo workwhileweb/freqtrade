@@ -4,3 +4,9 @@ https://api.telegram.org/bot8760239865:AAH_0S9ef7jRqHMbYsfQAPSnTxP2WAp_Tlg/getUp
 
 TOKEN=8760239865:AAH_0S9ef7jRqHMbYsfQAPSnTxP2WAp_Tlg
 CHAT_ID=-1003459361476
+
+strategy mặc định làm gì
+có thể strategy theo config thôi dudwodj ko ko cần code
+
+
+repo này đã mở trong devcontainer rồi, giờ câu lệnh để chạy tiếp thế nào
