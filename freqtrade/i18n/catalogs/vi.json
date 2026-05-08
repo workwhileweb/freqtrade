@@ -51,5 +51,18 @@
   "worker.state.paused": "⏸️ tạm dừng",
   "worker.state.reload_config": "🔄 tải lại cấu hình",
   "worker.config_reloaded": "✅ Đã tải lại cấu hình, bot đang chạy",
-  "worker.process_died": "💥 Tiến trình bot đã dừng"
+  "worker.process_died": "💥 Tiến trình bot đã dừng",
+  "rpc.error.no_active_trade": "📭 Không có giao dịch đang hoạt động",
+  "rpc.error.invalid_timescale": "❌ Timescale phải là số nguyên lớn hơn 0",
+  "rpc.error.trader_not_running": "⛔ Trader hiện không chạy",
+  "rpc.error.invalid_argument": "❌ Tham số không hợp lệ",
+  "rpc.error.failed_exit_trade": "❌ Không thể thoát giao dịch",
+  "rpc.error.force_entry_disabled": "⛔ Force entry chưa được bật",
+  "rpc.error.short_not_allowed_spot": "⛔ Không thể vào lệnh short trên thị trường Spot",
+  "rpc.error.symbol_inactive": "⛔ Symbol không tồn tại hoặc thị trường không còn hoạt động",
+  "rpc.error.max_trades_reached": "⛔ Đã đạt số lượng giao dịch tối đa",
+  "rpc.error.invalid_trade_id": "❌ Trade ID không hợp lệ",
+  "rpc.error.no_open_order_for_trade": "📭 Không có lệnh mở cho trade ID này",
+  "rpc.error.order_not_found": "🔎 Không tìm thấy lệnh",
+  "telegram.error.trade_id_not_set": "❌ Chưa truyền Trade ID."
 }

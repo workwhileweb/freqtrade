@@ -1435,7 +1435,7 @@ class Telegram(RPCHandler):
         Handler for /reload_trade <tradeid>.
         """
         if not context.args or len(context.args) == 0:
-            raise RPCException("Trade-id not set.")
+            raise RPCException(self._t("telegram.error.trade_id_not_set"))
         trade_id = int(context.args[0])
         msg = self._rpc._rpc_reload_trade_from_exchange(trade_id)
         await self._send_msg(f"{self._t('telegram.status_prefix')}: `{msg['status']}`")
@@ -1628,7 +1628,7 @@ class Telegram(RPCHandler):
         :return: None
         """
         if not context.args or len(context.args) == 0:
-            raise RPCException("Trade-id not set.")
+            raise RPCException(self._t("telegram.error.trade_id_not_set"))
         trade_id = int(context.args[0])
         msg = self._rpc._rpc_delete(trade_id)
         await self._send_msg(
@@ -1646,7 +1646,7 @@ class Telegram(RPCHandler):
         :return: None
         """
         if not context.args or len(context.args) == 0:
-            raise RPCException("Trade-id not set.")
+            raise RPCException(self._t("telegram.error.trade_id_not_set"))
         trade_id = int(context.args[0])
         self._rpc._rpc_cancel_open_order(trade_id)
         await self._send_msg("Open order canceled.")
@@ -2115,7 +2115,7 @@ class Telegram(RPCHandler):
         """
         try:
             if not context.args or len(context.args) == 0:
-                raise RPCException("Trade-id not set.")
+                raise RPCException(self._t("telegram.error.trade_id_not_set"))
             trade_id = int(context.args[0])
             key = None if len(context.args) < 2 else str(context.args[1])
 

@@ -51,5 +51,18 @@
   "worker.state.paused": "paused",
   "worker.state.reload_config": "reload_config",
   "worker.config_reloaded": "running after config reloaded",
-  "worker.process_died": "process died"
+  "worker.process_died": "process died",
+  "rpc.error.no_active_trade": "No active trade",
+  "rpc.error.invalid_timescale": "Timescale must be an integer greater than 0",
+  "rpc.error.trader_not_running": "Trader is not running",
+  "rpc.error.invalid_argument": "Invalid argument",
+  "rpc.error.failed_exit_trade": "Failed to exit trade.",
+  "rpc.error.force_entry_disabled": "Force entry not enabled.",
+  "rpc.error.short_not_allowed_spot": "Can't go short on Spot markets.",
+  "rpc.error.symbol_inactive": "Symbol does not exist or market is not active.",
+  "rpc.error.max_trades_reached": "Maximum number of trades is reached.",
+  "rpc.error.invalid_trade_id": "Invalid trade_id.",
+  "rpc.error.no_open_order_for_trade": "No open order for trade_id.",
+  "rpc.error.order_not_found": "Order not found.",
+  "telegram.error.trade_id_not_set": "Trade-id not set."
 }

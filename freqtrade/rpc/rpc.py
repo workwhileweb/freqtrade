@@ -208,7 +208,7 @@ class RPC:
             trades = Trade.get_open_trades()
 
         if not trades:
-            raise RPCException("no active trade")
+            raise RPCException(self._tr("rpc.error.no_active_trade"))
         else:
             results = []
             for trade in trades:
@@ -310,7 +310,7 @@ class RPC:
         """
         nonspot = self._config.get("trading_mode", TradingMode.SPOT) != TradingMode.SPOT
         if not Trade.get_open_trades():
-            raise RPCException("no active trade")
+            raise RPCException(self._tr("rpc.error.no_active_trade"))
 
         trades_list = []
         fiat_profit_sum = nan
@@ -404,7 +404,7 @@ class RPC:
             return timedelta(**{timeunit: step})
 
         if not (isinstance(timescale, int) and timescale > 0):
-            raise RPCException("timescale must be an integer greater than 0")
+            raise RPCException(self._tr("rpc.error.invalid_timescale"))
 
         profit_units: dict[date, dict] = {}
         daily_stake = self._freqtrade.wallets.get_total_stake_amount()
@@ -1103,7 +1103,7 @@ class RPC:
         """
 
         if self._freqtrade.state == State.STOPPED:
-            raise RPCException("trader is not running")
+            raise RPCException(self._tr("rpc.error.trader_not_running"))
 
         with self._freqtrade._exit_lock:
             if trade_id == "all":
@@ -1127,27 +1127,27 @@ class RPC:
             )
             if not trade:
                 logger.warning("force_exit: Invalid argument received")
-                raise RPCException("invalid argument")
+                raise RPCException(self._tr("rpc.error.invalid_argument"))
 
             result = self.__exec_force_exit(trade, ordertype, amount, price)
             Trade.commit()
             self._freqtrade.wallets.update()
             if not result:
-                raise RPCException("Failed to exit trade.")
+                raise RPCException(self._tr("rpc.error.failed_exit_trade"))
             return {"result": f"Created exit order for trade {trade_id}."}
 
     def _force_entry_validations(self, pair: str, order_side: SignalDirection):
         if not self._freqtrade.config.get("force_entry_enable", False):
-            raise RPCException("Force_entry not enabled.")
+            raise RPCException(self._tr("rpc.error.force_entry_disabled"))
 
         if self._freqtrade.state != State.RUNNING:
-            raise RPCException("trader is not running")
+            raise RPCException(self._tr("rpc.error.trader_not_running"))
 
         if order_side == SignalDirection.SHORT and self._freqtrade.trading_mode == TradingMode.SPOT:
-            raise RPCException("Can't go short on Spot markets.")
+            raise RPCException(self._tr("rpc.error.short_not_allowed_spot"))
 
         if pair not in self._freqtrade.exchange.get_markets(tradable_only=True):
-            raise RPCException("Symbol does not exist or market is not active.")
+            raise RPCException(self._tr("rpc.error.symbol_inactive"))
         # Check if pair quote currency equals to the stake currency.
         stake_currency = self._freqtrade.config.get("stake_currency")
         if not self._freqtrade.exchange.get_pair_quote_currency(pair) == stake_currency:
@@ -1190,7 +1190,7 @@ class RPC:
                 )
         else:
             if Trade.get_open_trade_count() >= self._config["max_open_trades"]:
-                raise RPCException("Maximum number of trades is reached.")
+                raise RPCException(self._tr("rpc.error.max_trades_reached"))
 
         if not stake_amount:
             # gen stake amount
@@ -1223,7 +1223,7 @@ class RPC:
 
     def _rpc_cancel_open_order(self, trade_id: int):
         if self._freqtrade.state == State.STOPPED:
-            raise RPCException("trader is not running")
+            raise RPCException(self._tr("rpc.error.trader_not_running"))
         with self._freqtrade._exit_lock:
             # Query for trade
             trade = Trade.get_trades(
@@ -1234,17 +1234,17 @@ class RPC:
             ).first()
             if not trade:
                 logger.warning("cancel_open_order: Invalid trade_id received.")
-                raise RPCException("Invalid trade_id.")
+                raise RPCException(self._tr("rpc.error.invalid_trade_id"))
             if not trade.has_open_orders:
                 logger.warning("cancel_open_order: No open order for trade_id.")
-                raise RPCException("No open order for trade_id.")
+                raise RPCException(self._tr("rpc.error.no_open_order_for_trade"))
 
             for open_order in trade.open_orders:
                 try:
                     order = self._freqtrade.exchange.fetch_order(open_order.order_id, trade.pair)
                 except ExchangeError as e:
                     logger.info(f"Cannot query order for {trade} due to {e}.", exc_info=True)
-                    raise RPCException("Order not found.")
+                    raise RPCException(self._tr("rpc.error.order_not_found"))
                 self._freqtrade.handle_cancel_order(
                     order, open_order, trade, CANCEL_REASON["USER_CANCEL"]
                 )
@@ -1396,7 +1396,7 @@ class RPC:
     def _rpc_count(self) -> dict[str, float]:
         """Returns the number of trades running"""
         if self._freqtrade.state == State.STOPPED:
-            raise RPCException("trader is not running")
+            raise RPCException(self._tr("rpc.error.trader_not_running"))
 
         trades = Trade.get_open_trades()
         return {
