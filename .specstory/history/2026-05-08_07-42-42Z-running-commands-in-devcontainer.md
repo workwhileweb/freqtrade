@@ -5832,3 +5832,981 @@ Status: **completed**
 <summary>Tool use: **await**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "content",
+  "path": "/tmp/freqtrade_trade_new.log",
+  "pattern": "Mô tả chiến lược|strategy_description|Sending rpc message: \\{'type': startup"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/tmp/freqtrade_trade_new.log",
+  "pattern": "Mô tả chiến lược|strategy_description|Sending rpc message: \\{'type': startup",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "../../tmp/freqtrade_trade_new.log"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: freqtrade show-config --config user_data/config.json > /tmp/resolved_cfg.json && python - <<'PY'
+import json
+text=open('/tmp/resolved_cfg.json',encoding='utf-8').read()
+start=text.find('{')
+cfg=json.loads(text[start:])
+print('strategy_description' in cfg, cfg.get('strategy_description'))
+print('strategy', cfg.get('strategy'))
+PY</summary>
+
+```bash
+freqtrade show-config --config user_data/config.json > /tmp/resolved_cfg.json && python - <<'PY'
+import json
+text=open('/tmp/resolved_cfg.json',encoding='utf-8').read()
+start=text.find('{')
+cfg=json.loads(text[start:])
+print('strategy_description' in cfg, cfg.get('strategy_description'))
+print('strategy', cfg.get('strategy'))
+PY
+```
+
+```
+2026-05-08 08:31:31,870 - freqtrade - INFO - freqtrade 2026.5-dev-f5a036a35
+2026-05-08 08:31:32,480 - numexpr.utils - INFO - NumExpr defaulting to 16 
+threads.
+2026-05-08 08:31:33,443 - freqtrade.configuration.load_config - INFO - Using 
+config: user_data/config.json ...
+2026-05-08 08:31:33,446 - freqtrade.loggers - INFO - Enabling colorized output.
+2026-05-08 08:31:33,446 - freqtrade.loggers - INFO - Logfile configured
+2026-05-08 08:31:33,446 - freqtrade.loggers - INFO - Verbosity set to 0
+2026-05-08 08:31:33,533 - freqtrade.configuration.configuration - INFO - Using 
+user-data directory: /workspaces/freqtrade/user_data ...
+2026-05-08 08:31:33,535 - freqtrade.configuration.configuration - INFO - Using 
+data directory: /workspaces/freqtrade/user_data/data/binance ...
+2026-05-08 08:31:34,442 - freqtrade.exchange.check_exchange - INFO - Checking 
+exchange...
+2026-05-08 08:31:34,449 - freqtrade.exchange.check_exchange - INFO - Exchange 
+"binance" is officially supported by the Freqtrade development team.
+2026-05-08 08:31:34,450 - freqtrade.configuration.configuration - INFO - Using 
+pairlist from configuration.
+2026-05-08 08:31:34,451 - freqtrade.configuration.config_validation - INFO - 
+Validating configuration ...
+True Chiến lược mẫu EMA + RSI, ưu tiên giao dịch an toàn trong chế độ dry-run để kiểm chứng tín hiệu trước khi dùng vốn thật.
+strategy SampleEmaRsiStrategy
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /tmp/freqtrade_trade_new.log</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade_desc.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade_desc.log 2>&1 &</summary>
+
+```bash
+pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && rm -f /tmp/freqtrade_trade_desc.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_trade_desc.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Path does not exist: /tmp/freqtrade_trade_desc.log
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy</summary>
+
+```bash
+freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy
+```
+
+```
+2026-05-08 08:32:13,456 - freqtrade - INFO - freqtrade 2026.5-dev-f5a036a35
+2026-05-08 08:32:13,914 - numexpr.utils - INFO - NumExpr defaulting to 16 
+threads.
+2026-05-08 08:32:16,720 - freqtrade.worker - INFO - Starting worker 
+2026.5-dev-f5a036a35
+2026-05-08 08:32:16,721 - freqtrade.configuration.load_config - INFO - Using 
+config: user_data/config.json ...
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Enabling colorized output.
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Logfile configured
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Verbosity set to 0
+2026-05-08 08:32:16,727 - freqtrade.configuration.configuration - INFO - Runmode
+set to dry_run.
+2026-05-08 08:32:16,727 - freqtrade.configuration.configuration - INFO - Dry run
+is enabled
+2026-05-08 08:32:16,728 - freqtrade.configuration.configuration - INFO - Using 
+DB: "sqlite:///tradesv3.dryrun.sqlite"
+2026-05-08 08:32:16,728 - freqtrade.configuration.configuration - INFO - Using 
+max_open_trades: 3 ...
+2026-05-08 08:32:16,817 - freqtrade.configuration.configuration - INFO - Using 
+user-data directory: user_data ...
+2026-05-08 08:32:16,820 - freqtrade.configuration.configuration - INFO - Using 
+data directory: user_data/data/binance ...
+2026-05-08 08:32:16,828 - freqtrade.exchange.check_exchange - INFO - Checking 
+exchange...
+2026-05-08 08:32:16,835 - freqtrade.exchange.check_exchange - INFO - Exchange 
+"binance" is officially supported by the Freqtrade development team.
+2026-05-08 08:32:16,836 - freqtrade.configuration.configuration - INFO - Using 
+pairlist from configuration.
+2026-05-08 08:32:16,837 - freqtrade.exchange.exchange - INFO - Instance is 
+running with dry_run enabled
+2026-05-08 08:32:16,837 - freqtrade.exchange.exchange - INFO - Using CCXT 4.5.50
+2026-05-08 08:32:16,862 - freqtrade.exchange.exchange - INFO - Using Exchange 
+"Binance"
+2026-05-08 08:32:17,938 - freqtrade.resolvers.exchange_resolver - INFO - Using 
+resolved exchange 'Binance'...
+2026-05-08 08:32:17,990 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+strategy SampleStrategy from 
+'/workspaces/freqtrade/user_data/strategies/sample_strategy.py'...
+2026-05-08 08:32:17,991 - freqtrade.strategy.hyper - INFO - Found no parameter 
+file.
+2026-05-08 08:32:17,992 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'timeframe' with value from the configuration: 5m.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'order_types' with value from the configuration: {'entry': 
+'limit', 'exit': 'limit', 'emergency_exit': 'market', 'force_entry': 'market', 
+'force_exit': 'market', 'stoploss': 'market', 'stoploss_on_exchange': False, 
+'stoploss_on_exchange_interval': 60}.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'order_time_in_force' with value from the configuration: 
+{'entry': 'GTC', 'exit': 'GTC'}.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'stake_currency' with value from the configuration: USDT.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'stake_amount' with value from the configuration: unlimited.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'unfilledtimeout' with value from the configuration: {'entry':
+10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'max_open_trades' with value from the configuration: 3.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using minimal_roi: {'60': 0.01, '30': 0.02, '0': 0.04}
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using timeframe: 5m
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stoploss: -0.1
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_stop: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_stop_positive_offset: 0.0
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_only_offset_is_reached: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using use_custom_stoploss: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using process_only_new_candles: True
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 
+'emergency_exit': 'market', 'force_entry': 'market', 'force_exit': 'market', 
+'stoploss': 'market', 'stoploss_on_exchange': False, 
+'stoploss_on_exchange_interval': 60}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stake_currency: USDT
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stake_amount: unlimited
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using startup_candle_count: 200
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 
+0, 'unit': 'minutes'}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using use_exit_signal: True
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using exit_profit_only: False
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using ignore_roi_if_entry_signal: False
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using exit_profit_offset: 0.0
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using disable_dataframe_checks: False
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using ignore_buying_expired_candle_after: 0
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using position_adjustment_enable: False
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using max_entry_position_adjustment: -1
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using max_open_trades: 3
+2026-05-08 08:32:17,999 - freqtrade.configuration.config_validation - INFO - 
+Validating configuration ...
+2026-05-08 08:32:18,060 - freqtrade.wallets - INFO - Wallets synced.
+2026-05-08 08:32:18,353 - freqtrade.rpc.rpc_manager - INFO - Enabling 
+rpc.telegram ...
+2026-05-08 08:32:18,602 - freqtrade.rpc.rpc_manager - INFO - Enabling 
+rpc.api_server
+2026-05-08 08:32:18,696 - freqtrade.rpc.telegram - INFO - rpc.telegram is 
+listening for following commands: [['status'], ['profit'], ['balance'], 
+['start'], ['stop'], ['forceexit', 'forcesell', 'fx'], ['forcebuy', 
+'forcelong'], ['forceshort'], ['reload_trade'], ['trades'], ['delete'], 
+['cancel_open_order', 'coo'], ['performance'], ['buys', 'entries'], ['exits', 
+'sells'], ['mix_tags'], ['stats'], ['daily'], ['weekly'], ['monthly'], 
+['count'], ['locks'], ['delete_locks', 'unlock'], ['reload_conf', 
+'reload_config'], ['show_conf', 'show_config'], ['pause', 'stopbuy', 
+'stopentry'], ['whitelist'], ['blacklist'], ['bl_delete', 'blacklist_delete'], 
+['logs'], ['health'], ['help'], ['version'], ['marketdir'], ['lang'], ['order'],
+['list_custom_data'], ['tg_info'], ['profit_long'], ['profit_short']]
+2026-05-08 08:32:18,963 - freqtrade.rpc.api_server.webserver - INFO - Starting 
+HTTP Server at 0.0.0.0:8080
+2026-05-08 08:32:18,964 - freqtrade.rpc.api_server.webserver - INFO - Starting 
+Local Rest Server.
+2026-05-08 08:32:18,978 - uvicorn.error - INFO - Started server process [13717]
+2026-05-08 08:32:18,978 - uvicorn.error - INFO - Waiting for application 
+startup.
+2026-05-08 08:32:18,979 - uvicorn.error - INFO - Application startup complete.
+2026-05-08 08:32:18,979 - uvicorn.error - INFO - Uvicorn running on 
+http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-05-08 08:32:19,105 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+pairlist StaticPairList from 
+'/workspaces/freqtrade/freqtrade/plugins/pairlist/StaticPairList.py'...
+2026-05-08 08:32:19,105 - freqtrade.freqtradebot - INFO - Starting initial 
+pairlist refresh
+2026-05-08 08:32:19,122 - freqtrade.plugins.pairlistmanager - WARNING - Pair 
+BNB/USDT in your blacklist. Removing it from whitelist...
+2026-05-08 08:32:19,123 - freqtrade.plugins.pairlistmanager - INFO - Whitelist 
+with 3 pairs: ['BTC/USDT', 'ETH/USDT', 'SOL/USDT']
+2026-05-08 08:32:19,124 - freqtrade.freqtradebot - INFO - Initial Pairlist 
+refresh took 0.02s
+2026-05-08 08:32:19,124 - freqtrade.strategy.hyper - INFO - No params for buy 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): buy_rsi = 30
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - No params for exit 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): exit_short_rsi = 30
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - No params for sell 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): sell_rsi = 70
+2026-05-08 08:32:19,126 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): short_rsi = 70
+2026-05-08 08:32:19,159 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection CooldownPeriod from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/cooldown_period.py'...
+2026-05-08 08:32:19,212 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection MaxDrawdown from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/max_drawdown_protection.py'
+...
+2026-05-08 08:32:19,275 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection StoplossGuard from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/stoploss_guard.py'...
+2026-05-08 08:32:19,280 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': status, 'status': '🟢 đang chạy'}
+2026-05-08 08:32:19,283 - freqtrade.worker - INFO - Changing state to: RUNNING
+2026-05-08 08:32:19,305 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': warning, 'status': '🧪 Đã bật chế độ dry-run. Tất cả giao dịch
+đều được mô phỏng.'}
+2026-05-08 08:32:19,306 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': "🚀 *Sàn:* &#96;binance&#96;\n💰 *Vốn mỗi lệnh:* 
+&#96;không giới hạn (USDT)&#96;\n🧾 _Bot sẽ dùng toàn bộ số dư khả dụng cho mỗi lệnh mới
+(sau các giới hạn an toàn)._\n🎯 *ROI tối thiểu:* &#96;{'60': 0.01, '30': 0.02, '0':
+0.04}&#96;\n🧾 _sau 60 phút: chốt lời tối thiểu 1.00%; sau 30 phút: chốt lời tối 
+thiểu 2.00%; sau 0 phút: chốt lời tối thiểu 4.00%_\n🛑 *Cắt lỗ:* &#96;-0.1&#96;\n🧾 _Nếu
+lỗ chạm khoảng 10.00% so với giá vào, bot sẽ thoát lệnh để hạn chế rủi ro._\n📐 
+*Nhồi thêm vị thế:* &#96;Tắt&#96;\n🕒 *Khung thời gian:* &#96;5m&#96;\n🧠 *Chiến lược:* 
+&#96;SampleStrategy&#96;\n📝 *Mô tả chiến lược:* Chiến lược mẫu EMA + RSI, ưu tiên giao 
+dịch an toàn trong chế độ dry-run để kiểm chứng tín hiệu trước khi dùng vốn 
+thật."}
+2026-05-08 08:32:19,308 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': "🔎 Đang tìm các cặp USDT để vào/thoát lệnh
+theo [{'StaticPairList': 'StaticPairList'}]"}
+2026-05-08 08:32:19,309 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': '🛡️ Đang dùng Protections: \nCooldownPeriod
+- Thời gian chờ trong 5 nến.\nMaxDrawdown - Bảo vệ sụt giảm tối đa, dừng giao 
+dịch nếu sụt giảm &gt; 0.2 trong 48 nến.\nStoplossGuard - Bảo vệ stoploss liên 
+tiếp: 4 stoploss với lợi nhuận &lt; 0.00% trong 24 nến.'}
+2026-05-08 08:32:19,461 - telegram.ext.Application - INFO - Application started
+2026-05-08 08:32:24,318 - freqtrade.worker - INFO - Bot heartbeat. PID=13717, 
+version='2026.5-dev-f5a036a35', state='RUNNING'
+]633;C2026-05-08 08:32:13,456 - freqtrade - INFO - freqtrade 2026.5-dev-f5a036a35
+2026-05-08 08:32:13,914 - numexpr.utils - INFO - NumExpr defaulting to 16 
+threads.
+2026-05-08 08:32:16,720 - freqtrade.worker - INFO - Starting worker 
+2026.5-dev-f5a036a35
+2026-05-08 08:32:16,721 - freqtrade.configuration.load_config - INFO - Using 
+config: user_data/config.json ...
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Enabling colorized output.
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Logfile configured
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Verbosity set to 0
+2026-05-08 08:32:16,727 - freqtrade.configuration.configuration - INFO - Runmode
+set to dry_run.
+2026-05-08 08:32:16,727 - freqtrade.configuration.configuration - INFO - Dry run
+is enabled
+2026-05-08 08:32:16,728 - freqtrade.configuration.configuration - INFO - Using 
+DB: "sqlite:///tradesv3.dryrun.sqlite"
+2026-05-08 08:32:16,728 - freqtrade.configuration.configuration - INFO - Using 
+max_open_trades: 3 ...
+2026-05-08 08:32:16,817 - freqtrade.configuration.configuration - INFO - Using 
+user-data directory: user_data ...
+2026-05-08 08:32:16,820 - freqtrade.configuration.configuration - INFO - Using 
+data directory: user_data/data/binance ...
+2026-05-08 08:32:16,828 - freqtrade.exchange.check_exchange - INFO - Checking 
+exchange...
+2026-05-08 08:32:16,835 - freqtrade.exchange.check_exchange - INFO - Exchange 
+"binance" is officially supported by the Freqtrade development team.
+2026-05-08 08:32:16,836 - freqtrade.configuration.configuration - INFO - Using 
+pairlist from configuration.
+2026-05-08 08:32:16,837 - freqtrade.exchange.exchange - INFO - Instance is 
+running with dry_run enabled
+2026-05-08 08:32:16,837 - freqtrade.exchange.exchange - INFO - Using CCXT 4.5.50
+2026-05-08 08:32:16,862 - freqtrade.exchange.exchange - INFO - Using Exchange 
+"Binance"
+2026-05-08 08:32:17,938 - freqtrade.resolvers.exchange_resolver - INFO - Using 
+resolved exchange 'Binance'...
+2026-05-08 08:32:17,990 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+strategy SampleStrategy from 
+'/workspaces/freqtrade/user_data/strategies/sample_strategy.py'...
+2026-05-08 08:32:17,991 - freqtrade.strategy.hyper - INFO - Found no parameter 
+file.
+2026-05-08 08:32:17,992 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'timeframe' with value from the configuration: 5m.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'order_types' with value from the configuration: {'entry': 
+'limit', 'exit': 'limit', 'emergency_exit': 'market', 'force_entry': 'market', 
+'force_exit': 'market', 'stoploss': 'market', 'stoploss_on_exchange': False, 
+'stoploss_on_exchange_interval': 60}.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'order_time_in_force' with value from the configuration: 
+{'entry': 'GTC', 'exit': 'GTC'}.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'stake_currency' with value from the configuration: USDT.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'stake_amount' with value from the configuration: unlimited.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'unfilledtimeout' with value from the configuration: {'entry':
+10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'max_open_trades' with value from the configuration: 3.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using minimal_roi: {'60': 0.01, '30': 0.02, '0': 0.04}
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using timeframe: 5m
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stoploss: -0.1
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_stop: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_stop_positive_offset: 0.0
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_only_offset_is_reached: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using use_custom_stoploss: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using process_only_new_candles: True
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 
+'emergency_exit': 'market', 'force_entry': 'market', 'force_exit': 'market', 
+'stoploss': 'market', 'stoploss_on_exchange': False, 
+'stoploss_on_exchange_interval': 60}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stake_currency: USDT
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stake_amount: unlimited
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using startup_candle_count: 200
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 
+0, 'unit': 'minutes'}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using use_exit_signal: True
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using exit_profit_only: False
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using ignore_roi_if_entry_signal: False
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using exit_profit_offset: 0.0
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using disable_dataframe_checks: False
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using ignore_buying_expired_candle_after: 0
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using position_adjustment_enable: False
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using max_entry_position_adjustment: -1
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using max_open_trades: 3
+2026-05-08 08:32:17,999 - freqtrade.configuration.config_validation - INFO - 
+Validating configuration ...
+2026-05-08 08:32:18,060 - freqtrade.wallets - INFO - Wallets synced.
+2026-05-08 08:32:18,353 - freqtrade.rpc.rpc_manager - INFO - Enabling 
+rpc.telegram ...
+2026-05-08 08:32:18,602 - freqtrade.rpc.rpc_manager - INFO - Enabling 
+rpc.api_server
+2026-05-08 08:32:18,696 - freqtrade.rpc.telegram - INFO - rpc.telegram is 
+listening for following commands: [['status'], ['profit'], ['balance'], 
+['start'], ['stop'], ['forceexit', 'forcesell', 'fx'], ['forcebuy', 
+'forcelong'], ['forceshort'], ['reload_trade'], ['trades'], ['delete'], 
+['cancel_open_order', 'coo'], ['performance'], ['buys', 'entries'], ['exits', 
+'sells'], ['mix_tags'], ['stats'], ['daily'], ['weekly'], ['monthly'], 
+['count'], ['locks'], ['delete_locks', 'unlock'], ['reload_conf', 
+'reload_config'], ['show_conf', 'show_config'], ['pause', 'stopbuy', 
+'stopentry'], ['whitelist'], ['blacklist'], ['bl_delete', 'blacklist_delete'], 
+['logs'], ['health'], ['help'], ['version'], ['marketdir'], ['lang'], ['order'],
+['list_custom_data'], ['tg_info'], ['profit_long'], ['profit_short']]
+2026-05-08 08:32:18,963 - freqtrade.rpc.api_server.webserver - INFO - Starting 
+HTTP Server at 0.0.0.0:8080
+2026-05-08 08:32:18,964 - freqtrade.rpc.api_server.webserver - INFO - Starting 
+Local Rest Server.
+2026-05-08 08:32:18,978 - uvicorn.error - INFO - Started server process [13717]
+2026-05-08 08:32:18,978 - uvicorn.error - INFO - Waiting for application 
+startup.
+2026-05-08 08:32:18,979 - uvicorn.error - INFO - Application startup complete.
+2026-05-08 08:32:18,979 - uvicorn.error - INFO - Uvicorn running on 
+http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-05-08 08:32:19,105 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+pairlist StaticPairList from 
+'/workspaces/freqtrade/freqtrade/plugins/pairlist/StaticPairList.py'...
+2026-05-08 08:32:19,105 - freqtrade.freqtradebot - INFO - Starting initial 
+pairlist refresh
+2026-05-08 08:32:19,122 - freqtrade.plugins.pairlistmanager - WARNING - Pair 
+BNB/USDT in your blacklist. Removing it from whitelist...
+2026-05-08 08:32:19,123 - freqtrade.plugins.pairlistmanager - INFO - Whitelist 
+with 3 pairs: ['BTC/USDT', 'ETH/USDT', 'SOL/USDT']
+2026-05-08 08:32:19,124 - freqtrade.freqtradebot - INFO - Initial Pairlist 
+refresh took 0.02s
+2026-05-08 08:32:19,124 - freqtrade.strategy.hyper - INFO - No params for buy 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): buy_rsi = 30
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - No params for exit 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): exit_short_rsi = 30
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - No params for sell 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): sell_rsi = 70
+2026-05-08 08:32:19,126 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): short_rsi = 70
+2026-05-08 08:32:19,159 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection CooldownPeriod from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/cooldown_period.py'...
+2026-05-08 08:32:19,212 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection MaxDrawdown from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/max_drawdown_protection.py'
+...
+2026-05-08 08:32:19,275 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection StoplossGuard from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/stoploss_guard.py'...
+2026-05-08 08:32:19,280 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': status, 'status': '🟢 đang chạy'}
+2026-05-08 08:32:19,283 - freqtrade.worker - INFO - Changing state to: RUNNING
+2026-05-08 08:32:19,305 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': warning, 'status': '🧪 Đã bật chế độ dry-run. Tất cả giao dịch
+đều được mô phỏng.'}
+2026-05-08 08:32:19,306 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': "🚀 *Sàn:* &#96;binance&#96;\n💰 *Vốn mỗi lệnh:* 
+&#96;không giới hạn (USDT)&#96;\n🧾 _Bot sẽ dùng toàn bộ số dư khả dụng cho mỗi lệnh mới
+(sau các giới hạn an toàn)._\n🎯 *ROI tối thiểu:* &#96;{'60': 0.01, '30': 0.02, '0':
+0.04}&#96;\n🧾 _sau 60 phút: chốt lời tối thiểu 1.00%; sau 30 phút: chốt lời tối 
+thiểu 2.00%; sau 0 phút: chốt lời tối thiểu 4.00%_\n🛑 *Cắt lỗ:* &#96;-0.1&#96;\n🧾 _Nếu
+lỗ chạm khoảng 10.00% so với giá vào, bot sẽ thoát lệnh để hạn chế rủi ro._\n📐 
+*Nhồi thêm vị thế:* &#96;Tắt&#96;\n🕒 *Khung thời gian:* &#96;5m&#96;\n🧠 *Chiến lược:* 
+&#96;SampleStrategy&#96;\n📝 *Mô tả chiến lược:* Chiến lược mẫu EMA + RSI, ưu tiên giao 
+dịch an toàn trong chế độ dry-run để kiểm chứng tín hiệu trước khi dùng vốn 
+thật."}
+2026-05-08 08:32:19,308 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': "🔎 Đang tìm các cặp USDT để vào/thoát lệnh
+theo [{'StaticPairList': 'StaticPairList'}]"}
+2026-05-08 08:32:19,309 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': '🛡️ Đang dùng Protections: \nCooldownPeriod
+- Thời gian chờ trong 5 nến.\nMaxDrawdown - Bảo vệ sụt giảm tối đa, dừng giao 
+dịch nếu sụt giảm &gt; 0.2 trong 48 nến.\nStoplossGuard - Bảo vệ stoploss liên 
+tiếp: 4 stoploss với lợi nhuận &lt; 0.00% trong 24 nến.'}
+2026-05-08 08:32:19,461 - telegram.ext.Application - INFO - Application started
+2026-05-08 08:32:24,318 - freqtrade.worker - INFO - Bot heartbeat. PID=13717, 
+version='2026.5-dev-f5a036a35', state='RUNNING'
+2026-05-08 08:32:13,456 - freqtrade - INFO - freqtrade 2026.5-dev-f5a036a35
+2026-05-08 08:32:13,914 - numexpr.utils - INFO - NumExpr defaulting to 16 
+threads.
+2026-05-08 08:32:16,720 - freqtrade.worker - INFO - Starting worker 
+2026.5-dev-f5a036a35
+2026-05-08 08:32:16,721 - freqtrade.configuration.load_config - INFO - Using 
+config: user_data/config.json ...
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Enabling colorized output.
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Logfile configured
+2026-05-08 08:32:16,726 - freqtrade.loggers - INFO - Verbosity set to 0
+2026-05-08 08:32:16,727 - freqtrade.configuration.configuration - INFO - Runmode
+set to dry_run.
+2026-05-08 08:32:16,727 - freqtrade.configuration.configuration - INFO - Dry run
+is enabled
+2026-05-08 08:32:16,728 - freqtrade.configuration.configuration - INFO - Using 
+DB: "sqlite:///tradesv3.dryrun.sqlite"
+2026-05-08 08:32:16,728 - freqtrade.configuration.configuration - INFO - Using 
+max_open_trades: 3 ...
+2026-05-08 08:32:16,817 - freqtrade.configuration.configuration - INFO - Using 
+user-data directory: user_data ...
+2026-05-08 08:32:16,820 - freqtrade.configuration.configuration - INFO - Using 
+data directory: user_data/data/binance ...
+2026-05-08 08:32:16,828 - freqtrade.exchange.check_exchange - INFO - Checking 
+exchange...
+2026-05-08 08:32:16,835 - freqtrade.exchange.check_exchange - INFO - Exchange 
+"binance" is officially supported by the Freqtrade development team.
+2026-05-08 08:32:16,836 - freqtrade.configuration.configuration - INFO - Using 
+pairlist from configuration.
+2026-05-08 08:32:16,837 - freqtrade.exchange.exchange - INFO - Instance is 
+running with dry_run enabled
+2026-05-08 08:32:16,837 - freqtrade.exchange.exchange - INFO - Using CCXT 4.5.50
+2026-05-08 08:32:16,862 - freqtrade.exchange.exchange - INFO - Using Exchange 
+"Binance"
+2026-05-08 08:32:17,938 - freqtrade.resolvers.exchange_resolver - INFO - Using 
+resolved exchange 'Binance'...
+2026-05-08 08:32:17,990 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+strategy SampleStrategy from 
+'/workspaces/freqtrade/user_data/strategies/sample_strategy.py'...
+2026-05-08 08:32:17,991 - freqtrade.strategy.hyper - INFO - Found no parameter 
+file.
+2026-05-08 08:32:17,992 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'timeframe' with value from the configuration: 5m.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'order_types' with value from the configuration: {'entry': 
+'limit', 'exit': 'limit', 'emergency_exit': 'market', 'force_entry': 'market', 
+'force_exit': 'market', 'stoploss': 'market', 'stoploss_on_exchange': False, 
+'stoploss_on_exchange_interval': 60}.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'order_time_in_force' with value from the configuration: 
+{'entry': 'GTC', 'exit': 'GTC'}.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'stake_currency' with value from the configuration: USDT.
+2026-05-08 08:32:17,993 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'stake_amount' with value from the configuration: unlimited.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'unfilledtimeout' with value from the configuration: {'entry':
+10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Override strategy 'max_open_trades' with value from the configuration: 3.
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using minimal_roi: {'60': 0.01, '30': 0.02, '0': 0.04}
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using timeframe: 5m
+2026-05-08 08:32:17,994 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stoploss: -0.1
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_stop: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_stop_positive_offset: 0.0
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using trailing_only_offset_is_reached: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using use_custom_stoploss: False
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using process_only_new_candles: True
+2026-05-08 08:32:17,995 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 
+'emergency_exit': 'market', 'force_entry': 'market', 'force_exit': 'market', 
+'stoploss': 'market', 'stoploss_on_exchange': False, 
+'stoploss_on_exchange_interval': 60}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stake_currency: USDT
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using stake_amount: unlimited
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using startup_candle_count: 200
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 
+0, 'unit': 'minutes'}
+2026-05-08 08:32:17,996 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using use_exit_signal: True
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using exit_profit_only: False
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using ignore_roi_if_entry_signal: False
+2026-05-08 08:32:17,997 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using exit_profit_offset: 0.0
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using disable_dataframe_checks: False
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using ignore_buying_expired_candle_after: 0
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using position_adjustment_enable: False
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using max_entry_position_adjustment: -1
+2026-05-08 08:32:17,998 - freqtrade.resolvers.strategy_resolver - INFO - 
+Strategy using max_open_trades: 3
+2026-05-08 08:32:17,999 - freqtrade.configuration.config_validation - INFO - 
+Validating configuration ...
+2026-05-08 08:32:18,060 - freqtrade.wallets - INFO - Wallets synced.
+2026-05-08 08:32:18,353 - freqtrade.rpc.rpc_manager - INFO - Enabling 
+rpc.telegram ...
+2026-05-08 08:32:18,602 - freqtrade.rpc.rpc_manager - INFO - Enabling 
+rpc.api_server
+2026-05-08 08:32:18,696 - freqtrade.rpc.telegram - INFO - rpc.telegram is 
+listening for following commands: [['status'], ['profit'], ['balance'], 
+['start'], ['stop'], ['forceexit', 'forcesell', 'fx'], ['forcebuy', 
+'forcelong'], ['forceshort'], ['reload_trade'], ['trades'], ['delete'], 
+['cancel_open_order', 'coo'], ['performance'], ['buys', 'entries'], ['exits', 
+'sells'], ['mix_tags'], ['stats'], ['daily'], ['weekly'], ['monthly'], 
+['count'], ['locks'], ['delete_locks', 'unlock'], ['reload_conf', 
+'reload_config'], ['show_conf', 'show_config'], ['pause', 'stopbuy', 
+'stopentry'], ['whitelist'], ['blacklist'], ['bl_delete', 'blacklist_delete'], 
+['logs'], ['health'], ['help'], ['version'], ['marketdir'], ['lang'], ['order'],
+['list_custom_data'], ['tg_info'], ['profit_long'], ['profit_short']]
+2026-05-08 08:32:18,963 - freqtrade.rpc.api_server.webserver - INFO - Starting 
+HTTP Server at 0.0.0.0:8080
+2026-05-08 08:32:18,964 - freqtrade.rpc.api_server.webserver - INFO - Starting 
+Local Rest Server.
+2026-05-08 08:32:18,978 - uvicorn.error - INFO - Started server process [13717]
+2026-05-08 08:32:18,978 - uvicorn.error - INFO - Waiting for application 
+startup.
+2026-05-08 08:32:18,979 - uvicorn.error - INFO - Application startup complete.
+2026-05-08 08:32:18,979 - uvicorn.error - INFO - Uvicorn running on 
+http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-05-08 08:32:19,105 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+pairlist StaticPairList from 
+'/workspaces/freqtrade/freqtrade/plugins/pairlist/StaticPairList.py'...
+2026-05-08 08:32:19,105 - freqtrade.freqtradebot - INFO - Starting initial 
+pairlist refresh
+2026-05-08 08:32:19,122 - freqtrade.plugins.pairlistmanager - WARNING - Pair 
+BNB/USDT in your blacklist. Removing it from whitelist...
+2026-05-08 08:32:19,123 - freqtrade.plugins.pairlistmanager - INFO - Whitelist 
+with 3 pairs: ['BTC/USDT', 'ETH/USDT', 'SOL/USDT']
+2026-05-08 08:32:19,124 - freqtrade.freqtradebot - INFO - Initial Pairlist 
+refresh took 0.02s
+2026-05-08 08:32:19,124 - freqtrade.strategy.hyper - INFO - No params for buy 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): buy_rsi = 30
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - No params for exit 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): exit_short_rsi = 30
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - No params for sell 
+found, using default values.
+2026-05-08 08:32:19,125 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): sell_rsi = 70
+2026-05-08 08:32:19,126 - freqtrade.strategy.hyper - INFO - Strategy 
+Parameter(default): short_rsi = 70
+2026-05-08 08:32:19,159 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection CooldownPeriod from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/cooldown_period.py'...
+2026-05-08 08:32:19,212 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection MaxDrawdown from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/max_drawdown_protection.py'
+...
+2026-05-08 08:32:19,275 - freqtrade.resolvers.iresolver - INFO - Using resolved 
+protection StoplossGuard from 
+'/workspaces/freqtrade/freqtrade/plugins/protections/stoploss_guard.py'...
+2026-05-08 08:32:19,280 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': status, 'status': '🟢 đang chạy'}
+2026-05-08 08:32:19,283 - freqtrade.worker - INFO - Changing state to: RUNNING
+2026-05-08 08:32:19,305 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': warning, 'status': '🧪 Đã bật chế độ dry-run. Tất cả giao dịch
+đều được mô phỏng.'}
+2026-05-08 08:32:19,306 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': "🚀 *Sàn:* &#96;binance&#96;\n💰 *Vốn mỗi lệnh:* 
+&#96;không giới hạn (USDT)&#96;\n🧾 _Bot sẽ dùng toàn bộ số dư khả dụng cho mỗi lệnh mới
+(sau các giới hạn an toàn)._\n🎯 *ROI tối thiểu:* &#96;{'60': 0.01, '30': 0.02, '0':
+0.04}&#96;\n🧾 _sau 60 phút: chốt lời tối thiểu 1.00%; sau 30 phút: chốt lời tối 
+thiểu 2.00%; sau 0 phút: chốt lời tối thiểu 4.00%_\n🛑 *Cắt lỗ:* &#96;-0.1&#96;\n🧾 _Nếu
+lỗ chạm khoảng 10.00% so với giá vào, bot sẽ thoát lệnh để hạn chế rủi ro._\n📐 
+*Nhồi thêm vị thế:* &#96;Tắt&#96;\n🕒 *Khung thời gian:* &#96;5m&#96;\n🧠 *Chiến lược:* 
+&#96;SampleStrategy&#96;\n📝 *Mô tả chiến lược:* Chiến lược mẫu EMA + RSI, ưu tiên giao 
+dịch an toàn trong chế độ dry-run để kiểm chứng tín hiệu trước khi dùng vốn 
+thật."}
+2026-05-08 08:32:19,308 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': "🔎 Đang tìm các cặp USDT để vào/thoát lệnh
+theo [{'StaticPairList': 'StaticPairList'}]"}
+2026-05-08 08:32:19,309 - freqtrade.rpc.rpc_manager - INFO - Sending rpc 
+message: {'type': startup, 'status': '🛡️ Đang dùng Protections: \nCooldownPeriod
+- Thời gian chờ trong 5 nến.\nMaxDrawdown - Bảo vệ sụt giảm tối đa, dừng giao 
+dịch nếu sụt giảm &gt; 0.2 trong 48 nến.\nStoplossGuard - Bảo vệ stoploss liên 
+tiếp: 4 stoploss với lợi nhuận &lt; 0.00% trong 24 nến.'}
+2026-05-08 08:32:19,461 - telegram.ext.Application - INFO - Application started
+2026-05-08 08:32:24,318 - freqtrade.worker - INFO - Bot heartbeat. PID=13717, 
+version='2026.5-dev-f5a036a35', state='RUNNING'
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Xong rồi, mình đã thêm `strategy_description` vào config và confirm Telegram message đã hiển thị đúng format mới.
+
+Cụ thể startup message hiện tại đã là:
+
+- `💰 Vốn mỗi lệnh: không giới hạn (USDT)`
+- Có dòng giải thích thêm cho stake
+- ROI có dòng diễn giải chi tiết theo từng mốc
+- Stoploss có dòng diễn giải rủi ro
+- `📝 Mô tả chiến lược:` lấy từ `strategy_description` trong `user_data/config.json` (tiếng Việt có dấu)
+
+Giá trị mình đã set:
+- `user_data/config.json` -> `strategy_description`:  
+  `Chiến lược mẫu EMA + RSI, ưu tiên giao dịch an toàn trong chế độ dry-run để kiểm chứng tín hiệu trước khi dùng vốn thật.`
+
+Nếu muốn, mình có thể chỉnh wording message này theo style ngắn gọn hơn (ví dụ dạng 1-2 dòng tổng kết) hoặc chuyên nghiệp hơn (dành cho người mới).
+
+---
+
+_**User**_
+
+chuyên nghiệp hơn
+
+---
+
+_**Agent (default)**_
+
+Mình sẽ tinh chỉnh lại wording startup Telegram theo phong cách chuyên nghiệp, ngắn gọn và nhất quán thuật ngữ hơn, rồi restart bot để áp dụng ngay.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/freqtrade/i18n/catalogs/vi.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /workspaces/freqtrade/user_data/config.json</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy</summary>
+
+```bash
+pkill -f "freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy" || true && freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: rm -f /tmp/freqtrade_prof.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_prof.log 2>&1 &</summary>
+
+```bash
+rm -f /tmp/freqtrade_prof.log && nohup freqtrade trade --userdir user_data --config user_data/config.json --strategy SampleStrategy > /tmp/freqtrade_prof.log 2>&1 &
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await">
+<details>
+<summary>Tool use: **await**</summary>
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "content",
+  "path": "/tmp/freqtrade_prof.log",
+  "pattern": "Mô tả chiến lược|Vốn cho mỗi lệnh|Cấu hình ROI tối thiểu|Điều chỉnh vị thế|Tên chiến lược"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/tmp/freqtrade_prof.log",
+  "pattern": "Mô tả chiến lược|Vốn cho mỗi lệnh|Cấu hình ROI tối thiểu|Điều chỉnh vị thế|Tên chiến lược",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "../../tmp/freqtrade_prof.log"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Đã chỉnh xong theo phong cách chuyên nghiệp hơn và áp dụng thành công.
+
+Mình đã cập nhật:
+- wording startup Telegram trong `vi.json` theo hướng trang trọng, rõ nghiệp vụ
+- mô tả chiến lược trong `user_data/config.json` sang văn phong chuyên nghiệp hơn
+
+Các cụm chính đã đổi:
+- `Vốn cho mỗi lệnh`
+- `Cấu hình ROI tối thiểu`
+- `Điều chỉnh vị thế`
+- `Tên chiến lược`
+- diễn giải ROI/Stoploss theo ngôn ngữ chuẩn vận hành
+
+Đã verify runtime log:
+- Message Telegram startup mới hiển thị đúng wording chuyên nghiệp (bao gồm mô tả chiến lược mới).
+
+---
+
+_**User**_
+
+<timestamp>Friday, May 8, 2026, 3:35 PM (UTC+7)</timestamp>
+<system_notification>
+The following task has finished. If you were already aware, ignore this notification and do not restate prior responses.
+
+<task>
+kind: shell
+status: aborted
+task_id: 348795
+title: Run bot foreground to inspect startup message once
+output_path: /home/ftuser/.cursor/projects/workspaces-freqtrade/terminals/348795.txt
+</task>
+</system_notification>
+<user_query>Briefly inform the user about the task result and perform any follow-up actions (if needed).</user_query>
+
+---
+
+_**Agent (default)**_
+
+Task trước đó (`Run bot foreground to inspect startup message once`) đã **bị abort** nên không tiếp tục chạy foreground nữa.
+
+Mình đã xử lý follow-up ngay sau đó:
+- chạy lại bot bằng cách khác (background),
+- kiểm tra và xác nhận startup Telegram message đã cập nhật đúng theo bản wording chuyên nghiệp mới.
